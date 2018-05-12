@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+
+
+<div id="domautocomplete" style="width: 20em; display:none">
+    <h3>Search Domains</h3>
+    <input id="dominput" type="text"/>
+    <div id="addContainer" stype="display:none">
+        <input id="addDomain" type="button" name="adddom" value="Create Domain"/> 
+    </div>
+    <div id="domcontainer"></div>
+    <br/>
+</div>
+
+<div id="domContainer">
+    <h3>Domains</h3>
+    <div id="lod">Loading</div>
+    <div id="DomainList"></div>
+</div>
+
+<div id="addRecord" style="display:none;z-index:9999">
+    <div class="hd">Add new DNS record</div>
+    <div class="bd">
+        <form id='addRecordForm'>
+            <table>
+                <tr>
+                    <td>
+                        <label style="display:block;float:left;width:45%;clear:left;" for="dom">Subdomain:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="dom" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="type">Type:</label>
+                    </td>
+                    <td>
+                        <select name="type">
+                            <option value="A">A</option>
+                            <option value="AAAA">AAAA</option>
+                            <option value="CNAME">CNAME</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="data">Data:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="data" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ttl">TTL:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="ttl" />
+                    </td>
+                </tr>
+            </table>
+        </form> 
+    </div>
+</div>
+
+<div id="addMXRecord" style="display:none;z-index:9999">
+    <div class="hd">Add new DNS record</div>
+    <div class="bd">
+        <form id='addMXRecordForm'>
+            <table>
+                <tr>
+                    <td>
+                        <label style="display:block;float:left;width:45%;clear:left;" for="dom">Subdomain:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="dom" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="data">Host:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="data" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="prio">Priority:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="prio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ttl">TTL:</label>
+                    </td>
+                    <td>
+                        <input type="textbox" name="ttl" />
+                    </td>
+                </tr>
+            </table>
+        </form> 
+    </div>
+</div>
+
+<div id="editPannel" style="display:none;">
+    <h3 id="domName"> </h3>
+    <input id="backList" type="button" name="open" value="Back To List"/> 
+    <input id="addRec" type="button" name="open" value="Add Record"/> 
+    <div id="cellediting"></div> 
+
+
+    <h3>MX Records</h3>
+    <input id="addMXRec" type="button" name="open" value="Add MX Record"/> 
+    <div id="celleditingMX"></div> 
+</div>
+
+</div>

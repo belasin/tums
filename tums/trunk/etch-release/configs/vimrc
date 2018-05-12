@@ -1,0 +1,18 @@
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set ai
+syntax on
+set background=dark
+set nobackup
+set nocompatible        " Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start  " more powerful backspacing
+" tab navigation like firefox
+:nmap <C-p> :tabprevious<cr>
+:nmap <C-l> :tabnext<cr>
+:map <C-p> :tabprevious<cr>
+:map <C-l> :tabnext<cr>
+:imap <C-p> <ESC>:tabprevious<cr>i
+:imap <C-l> <ESC>:tabnext<cr>i
+:nmap <C-t> :tabnew<cr>
+:imap <C-t> <ESC>:tabnew<cr> 

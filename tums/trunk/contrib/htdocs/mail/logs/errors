@@ -1,0 +1,18 @@
+[22-Jul-2007 11:16:38 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:32 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:34 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:34 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:34 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:34 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:35 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:36 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:37 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:49 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:17:50 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:18:43 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:20:40 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:22:16 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:22:40 +0200] DB Error: DB Error: extension not found in /var/www/localhost/htdocs/mail/program/include/rcube_db.inc on line 105
+[22-Jul-2007 11:25:23 +0200] IMAP Error: Authentication for lyle failed (LOGIN): "a001 NO Login failed." in  on line 0
+[22-Jul-2007 13:18:48] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /var/www/localhost/htdocs/mail/program/lib/imap.inc on line 130
+[23-Jul-2007 14:40:43] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /var/www/localhost/htdocs/mail/program/lib/imap.inc on line 131

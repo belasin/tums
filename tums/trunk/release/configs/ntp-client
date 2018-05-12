@@ -1,0 +1,20 @@
+# /etc/conf.d/ntp-client
+
+# Command to run to set the clock initially
+# Most people should just leave this line alone ...
+# however, if you know what you're doing, and you
+# want to use ntpd to set the clock, change this to 'ntpd'
+NTPCLIENT_CMD="ntpdate"
+
+# Options to pass to the above command
+# This default setting should work fine but you should
+# change the default 'pool.ntp.org' to something closer
+# to your machine.  See http://www.pool.ntp.org/ or
+# try running `netselect -s 3 pool.ntp.org`.
+NTPCLIENT_OPTS=" -b -u bpexample.ntpaddr"
+
+# How long to wait (in seconds) before giving up.
+# Useful for when you boot and DNS/internet isn't
+# really available but you have your net interface
+# come up with say a static IP.
+NTPCLIENT_TIMEOUT=30

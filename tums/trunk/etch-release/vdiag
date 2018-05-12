@@ -1,0 +1,490 @@
+#!/usr/bin/python
+
+import os, sys, struct, fcntl, termios
+
+BOLD = '\033[1m'
+RED = BOLD+'\033[31m'
+GREEN = BOLD+'\033[32m'
+BLUE = BOLD+'\033[34m'
+YELLOW = BOLD+'\033[33m'
+RESET = '\033[0;0m'
+
+def getSize():
+    s = struct.pack("HHHH", 0, 0, 0, 0)
+    fd_stdout = sys.stdout.fileno()
+    x = fcntl.ioctl(fd_stdout, termios.TIOCGWINSZ, s)
+    return struct.unpack("HHHH", x)[:2]
+
+def printBanner(text):
+    rows, cols = getSize()
+    blocks = (cols/4) - (len(text)/2) +4
+    space = "="*blocks
+    print YELLOW+space+" "+text+" "+space+RESET
+
+def printTest(name, status):
+    ok = "[ %sOK%s ]" %( GREEN, RESET )
+    fail = "[%sFAIL%s]" % ( RED, RESET )
+
+    if status:
+        stat = ok
+    else:
+        stat = fail
+
+    rows, cols = getSize()
+    dots = (cols/2) - len(name)
+
+    print " "+name+"."*dots, stat
+
+class Fail(object):
+    def __init__(self, message, action = None):
+        self.message = message
+        self.action = action
+
+def getDefaultPathIP():
+    ro = os.popen('ip ro | grep default').read().replace('\n','')
+
+    if 'via' in ro:
+        # IS ADDR
+        return ro.split()[2]
+    else:
+        dev = ro.split()[2]
+        ip = os.popen("ip addr show dev %s | grep inet |head -n 1| awk '{print $2}'" % dev).read()
+        return ip.replace('\n', '').split('/')[0]
+
+# Test object
+class Test(object):
+    def __init__(self, ps, failure):
+        # Get all running processes now
+        self.ps = ps
+        self.cname = str(self.__class__).split('.')[-1].split("'")[0]
+        self.fail = failure
+
+    def getTests(self):
+        return [i for i in dir(self) if i[:5]=="test_"]
+
+    def runTest(self, testname):
+        tname = testname.split('_')[-1]
+        fn = getattr(self, testname)
+        res = fn()
+        if isinstance(res, Fail):
+            printTest(tname, False)
+            self.fail.append([tname, res])
+        else:
+            printTest(tname, True)
+
+    def runAll(self):
+        for i in self.getTests():
+            self.runTest(i)
+
+class System(Test):
+    def test_RRD(self):
+        n = os.listdir('/usr/local/tcs/tums/rrd')
+
+        broken = []
+        for fi in n:
+            if not ".rrd" in fi:
+                continue
+
+            n = os.popen('rrdtool fetch /usr/local/tcs/tums/rrd/%s AVERAGE -s -2h' % fi)
+
+            ln = n.read().split('\n') 
+            if len(ln) < 10:
+                broken.append(fi)
+
+        if broken:
+            t = "System has broken RRD files. Suggest removing them\n    " + "\n    ".join(broken)
+            t+= "\nRun /usr/local/tcs/tums/getGraph.py to regenerate the rrds"
+
+            Fail(t)
+        
+        return True
+
+    def test_Load(self):
+        n = os.popen('uptime').read().replace('\n', '').replace(',', '').split()[-3:]
+        f, t, ft = [float(i) for i in n]
+
+        if ft > 2:
+            return Fail("Load average is over 200%. Check system activity")
+
+        if (f > 1.2) and (t < f) and (ft <= t):
+            return Fail("Load average gradient increasing beyond 100%. Check system activity")
+
+        if f > 1:
+            print YELLOW + "WARNING: Load average is more than 100%" + RESET
+
+        return True
+
+    def test_Performance(self):
+        stat = os.popen('vmstat | tail -n 1').read().replace('\n', '').split()
+        
+        wait = int(stat[-1])
+
+        if wait > 50: 
+            return Fail("System CPU load is >50% wait-state. This means the server has an I/O bottleneck.")
+
+        id = int(stat[-2])
+        if id < 10:
+            return Fail("CPU is currently <10% idle. This is not always serious unless it is consistent over a long period")
+
+
+        blocks_in= int(stat[8])
+        blocks_out= int(stat[9])
+
+        if (blocks_in + blocks_out) > 250:
+            return Fail("System IO is beyond insane BI/BO = %s/%s" % (blocks_in, blocks_out))
+        
+        blockdif = abs(blocks_in - blocks_out)
+        if blockdif > 40:
+            return Fail("Server is currently on fire.")
+
+        return True
+
+    def test_LDAP(self):
+        if 'sbin/slapd' not in self.ps:
+            return False
+        return True
+
+    def test_Network(self):
+        routes = os.popen('ip ro').read()
+        if not 'default' in routes:
+            return Fail("No default route for network")
+
+    def test_DualPath(self):
+        devs = os.popen("ifconfig | grep eth | awk '{print $1}'").read().strip('\n').split('\n')
+
+        providers = os.popen('cat /etc/shorewall/providers | grep -v "^#"')
+            
+        ldevs = []
+        netdevs = []
+        for i in providers:
+            ln = i.strip('\n')
+            if not ln:
+                continue
+            sp = ln.split()
+            outdev = sp[4]
+            ldevs = sp[-1].split(',')
+            if 'ppp' in outdev:
+                un = outdev[-1]
+                outdev = os.popen('cat /etc/ppp/peers/wan%s | grep plugin' % un).read().strip('\n').split()[-1]
+            netdevs.append(outdev)
+
+        if not netdevs:
+            # No providers
+            return True
+
+        nf = False
+        landevs = []
+        for n in devs:
+            if n in netdevs:
+                continue
+            landevs.append(n)
+
+        for k in landevs:
+            if k not in ldevs:
+                nf = k
+
+        if nf:
+            return Fail("The outbound routing tables do not match our internal LAN devices."+
+                        "Ensure all LAN devices are marked as interior. The problem is %s." % nf)
+        else:
+            return True
+        
+    def test_Interfaces(self):
+        try:
+            n = open('/etc/udev/rules.d/z25_persistent-net.rules')
+        except:
+            return True
+
+        nics = []
+        for i in n:
+            if i[0] != "S":
+                continue
+            sub, driv, atr, name = i.strip('\n').replace(',', '').split()
+            nics.append((
+                atr.split('"')[1],
+                name.split('"')[1]
+            ))
+
+        for mac,name in nics:
+            if not os.popen('ifconfig -a | grep "%s"' % mac.upper()).read().strip('\n'):
+                return Fail("Interface %s does not exist. Suggest flushing udev with 'vdiag --flush-udev'" % name)
+            if ("_" in name) or ("-" in name):
+                return Fail("Interface %s has a strange name. Suggest flushing udev with 'vdiag --flush-udev'" % name)
+        
+        return True
+            
+    def test_DNS(self):
+        nameservers = os.popen("cat /etc/resolv.conf  | grep \"^nameserver\" | awk '{print $2}'")
+        for i in nameservers:
+            host = i.strip('\n')
+
+            l = os.popen('ping -c 3 %s | grep "packet loss"' % host).read()
+            if not " 0% pack" in l:
+                return Fail("DNS server %s is not reachable" % host)
+
+        extTest = os.popen('host google.com 2>&1').read()
+        if not "has address" in extTest:
+            return Fail("Unable to resolve external DNS")
+
+    def test_Memory(self):
+        mem = int(os.popen('free -m | tail -n 2 | head -n 1 | awk \'{ print $4}\'').read())
+        if mem < 128:
+            return Fail("System has less than 128MB of free memory!")
+
+    def test_Processes(self):
+        total = int(os.popen('free -m | head -n 2| tail -n 1 | awk \'{print $2}\'').read())
+        for ln in self.ps.split('\n'):
+            val = ln.split()[5]
+            if val == "RSS":
+                continue 
+            res = int(val)/1024
+            if res > (total/4):
+                procname = ln[65:]
+                return Fail("Process %s is using more than 33%% of the system memory. Suggest restarting service" % procname)
+        return True
+
+    def test_DHCP(self):
+        isActive = os.popen('ls /etc/rc4.d | grep dhcp').read().replace('\n', '')
+
+        if not isActive:
+            # DHCP is not enabled
+            return True
+
+        if 'dhcpd' not in self.ps:
+            return Fail("DHCP service not running.", "/etc/init.d/dhcp3-server start")
+
+    def test_BIND(self):
+        if 'named' not in self.ps:
+            return Fail("BIND service not running.", "/etc/init.d/bind9 start")
+
+        nss = os.popen('cat /etc/bind/pri/*.zone | grep NS | awk \'{print $2}\'').read().strip('\n').split('\n')
+        
+        for i in nss:
+            ns = i.strip('.')
+            h = os.popen('host %s 2>&1' % ns).read()
+            if not "has address" in h:
+                # Find this zone
+                z = os.popen('grep "%s" /etc/bind/pri/*.zone | head -n 1' % ns).read().split(':')[0] 
+                return Fail("NS %s is not valid. Check zone data for %s or create a valid A record" % (ns, z))
+
+        return True
+        
+class Proxy(Test):
+    def test_Squid(self):
+
+        check = os.popen('squid -k check 2>&1').read().strip('\n')
+        if "Terminated" in check:
+            Fail("Proxy configuration is invalid - %s" % check)
+        
+        # Print out any warnings from config checker
+        if "WARN" in check:
+            for i in check.split('\n'):
+                if "WARN" in i:
+                    print YELLOW+i[21:]+RESET
+
+        if "squid" not in self.ps:
+            # Why not?
+            log = os.popen('tail -n 60 /var/log/squid/cache.log')
+
+            for i in log:
+                if ("IOError:" in i) and ("Permission denied:" in i):
+                    file = i.split()[-1].replace('\n', '')
+                    return Fail("Related file %s has incorrect permissions." % file, "chmod ug+rw %s; chown proxy:proxy %s" % (file, file))
+                if "FATAL" in i:
+                    return Fail("Squid is unable to start: %s" % i.replace('FATAL:', ''))
+
+            return Fail("Squid service is not running", "/etc/init.d/squid start")
+
+        cmd = "http_proxy=\"http://127.0.0.1:8080/\" wget --no-cache -O /tmp/vdiagprox http://www.google.com/ 2>&1"
+        out = os.popen(cmd).read()
+
+        if "Forbidden" in out:
+            return Fail("Proxy connection was not authorized. Ensure localhost is allowed through proxy")
+    
+        if "Service Unavailable" in out:
+            return Fail("DNS issue with web proxy.")
+
+        if "Gateway Time" in out:
+            return Fail("Unable to reach any web sites. Check network connectivity")
+
+        try:
+            n = open('/tmp/vdiagprox').read()
+        except:
+            return Fail("Proxy test failed. File was not written")
+        if "Google" not in n:
+            return Fail("Proxy output not as expected.")
+
+        return True
+
+class Mail(Test):
+    """ Mail test object """
+    def getAS(self, ip):
+        n = os.popen('whois -h whois.cymru.com %s | tail -n 1| awk \'{print $1}\'' % ip).read().strip('\n')
+        return n
+
+    def test_Routing(self):
+        n = os.popen('ip ro | grep default').read()
+        l = os.popen('exim -bt thusa@gmail.com').read()
+        if 'ppp' in n:
+            if "router = gateway" not in l:
+                # ok but check our transport now for a specified interface
+                trans = os.popen("exim -bP transport remote_smtp | grep interface | awk '{print $3}'").read().strip('\n').strip()
+                if not trans:
+                    return Fail("Our mail router is not a smarthost, but our default route looks dynamic", "*Configure an SMTP relay")
+
+        route = l.split('\n')[2].strip().split()[2].strip('[').strip(']')
+        me = getDefaultPathIP()
+        
+        asRoute, asMe = self.getAS(route), self.getAS(me)
+
+        if asRoute != asMe:
+            print YELLOW+"WARNING: Our SMTP relay is in a different AS to our internet connection."
+            print        "         Please ensure that the SMTP relay setting is correct for this ISP." + RESET
+
+        return True
+
+    def test_Exim(self):
+        if 'sbin/exim4' not in self.ps:
+            return Fail("Exim is not running.", "/etc/init.d/exim4 start; update-rc.d exim4 defaults")
+
+        mailTest = os.popen('exim -bt foo@google.com').read()
+
+        if "undeliverable" in mailTest:
+            return Fail("External mail has no valid route,")
+
+        localTest = os.popen("slapcat 2>/dev/null| grep \"^mail: \" | awk '{print $2}' | xargs exim -bt")
+
+        addressFail = []
+        for i in localTest:
+            if "undeliverable" in i:
+                if i.strip('\n') not in addressFail:
+                    addressFail.append(i.strip('\n'))
+
+        if addressFail:
+            return Fail("System has unroutable local addresses:\n" + '\n'.join(addressFail))
+
+        return True
+
+    def test_ClamAV(self):
+        if '/usr/sbin/clamd' not in self.ps:
+            return Fail("Clamd is not running.", "/etc/init.d/clamav-daemon start")
+
+        return True
+
+    def test_SpamAssassin(self):
+        if 'sbin/spamd' not in self.ps:
+            return Fail("Spamd is not running.", "/etc/init.d/spamassassin start")
+        return True
+
+    def test_Courier(self):
+        if 'imap' not in self.ps:
+            return Fail("IMAP not running", "/etc/init.d/courier-imap start")
+        if 'pop3' not in self.ps:
+            return Fail("POP3 not running", "/etc/init.d/courier-pop start")
+        if 'authdaemond' not in self.ps:
+            return Fail("Courier authentication not running", "/etc/init.d/courier-authdaemon start")
+
+        maillog = os.popen('tail -n 500 /var/log/mail.log | grep imapd')
+        fail = False
+        swaps = 0
+        for n in maillog:
+            if "authentication error" in n:
+                fail = True
+                swaps += 1
+            if "imapd: LOGIN, user" in n:
+                fail = False
+
+        if fail:
+            return Fail("Authentiction issues in courier.")
+        if swaps > 5:
+            return Fail("Intermittant Authentiction issues in courier. Check system load")
+        
+        return True
+
+    def test_Hubs(self):
+        n = os.popen("cat /etc/exim4/hubbed_hosts  | grep -v \"^#\" | awk '{print $2}' | sort |uniq")
+        for i in n:
+            if not i.strip('\n'):
+                continue
+            host = i.strip('\n')
+
+            l = os.popen('ping -c 3 %s | grep "packet loss"' % host).read()
+            if not " 0% pack" in l:
+                return Fail("Hubbed host %s is not reachable" % host)
+
+        return True
+            
+def main():
+    printBanner("Vulani Diagnostics")
+    failures = []
+
+    ps = os.popen('ps aux').read().strip('\n')
+
+    tests = [
+        System,
+        Mail,
+        Proxy
+    ]
+
+    for t in tests:
+        test = t(ps, failures)
+        print "[ %s ]" % (BLUE+test.cname+RESET)
+        test.runAll()
+        print
+
+    if failures:
+        print RED + "== Failures ==" + RESET
+        for i,fail in failures:
+            print "  %s= %s =%s" % (RED, i, RESET)
+            print " ", fail.message, ":"
+            if fail.action:
+                print "    Corrective action available: ", fail.action
+            else:
+                print "    Permanent failure!"
+
+        sys.exit(1)
+
+args = sys.argv[1:]
+
+if not args:
+    main()
+
+## Arguments and helpers
+
+def flushUdev():
+    n = open('/etc/udev/rules.d/z25_persistent-net.rules', 'wt')
+    cont = """# This file was automatically generated by the /lib/udev/write_net_rules
+# program, probably run by the persistent-net-generator.rules rules file.
+#
+# You can modify it, as long as you keep each rule on a single line.
+# MAC addresses must be written in lowercase.\n"""
+    n.write(cont)
+    n.close()
+    print "udev flushed successfully. Please reboot the server"
+
+def help():
+    htext = """Vulani diagnostics tool. 
+Usage: vdiag [OPTION]
+Performs diagnostic checks when no arguments are passed
+
+Options:
+    --flush-udev        Flush the udev network subsystem
+    --run               Run all diagnostic checks (default)
+    --help              Display this help and exit
+"""
+    print htext
+
+if args:
+    params = {
+        "--flush-udev": flushUdev,
+        "--help": help,
+        "--run": main
+    }
+
+    for i in args:
+        if i in params:
+            params[i]()
+    
+        else:
+            print "Unknown command: ", i
+            sys.exit(1)

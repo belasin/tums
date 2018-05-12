@@ -1,0 +1,25 @@
+@		86400	IN	SOA	bpexample.hostname.bpexample.com. postmaster.bpexample.com.(
+				1
+				28800 
+				7200 
+				3600000 
+				86400 )
+
+			NS	bpexample.hostname.bpexample.com.
+			
+			A	192.168.0.1
+
+www			CNAME	bpexample.hostname
+
+cache			CNAME	bpexample.hostname
+mail			CNAME	bpexample.hostname
+smtp			CNAME	bpexample.hostname
+pop3			CNAME	bpexample.hostname
+imap			CNAME	bpexample.hostname
+router			CNAME	bpexample.hostname
+ns			CNAME	bpexample.hostname
+ntp			CNAME	bpexample.hostname
+server			CNAME	bpexample.hostname
+
+bpexample.hostname			A	192.168.0.1
+

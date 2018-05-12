@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+import sha, os, time
+
+from pysqlite2 import dbapi2 as sqlite
+
+today = time.time()
+
+forDeletion = []
+
+maxAge = 60*60*24 * 50 
+
+def clearUpdate(name):
+    updateDb = sqlite.connect("/usr/local/tcs/tums/uaxeldb/update.db", isolation_level=None)
+    cur = updateDb.cursor()
+    cur.execute("DELETE FROM files WHERE name=?", (name,))
+    updateDb.commit()
+    cur.close()
+    updateDb.close()
+
+for i in os.listdir('/var/lib/samba/updates/'):
+    if len(i) != 40:
+        # Not really a hash
+        continue
+
+    # Find the file name that corresponds to this hash..
+    fi = os.listdir('/var/lib/samba/updates/%s' % i)
+    fname = ""
+    for n in fi:
+        if sha.sha(n).hexdigest() == i:
+            fname = n
+
+    if not fname:
+        # No useful files here so either something is currently downloading or we don't care 
+        continue
+    
+    # Grab the last access time
+    atime = os.stat('/var/lib/samba/updates/%s/%s' % (i, fname)).st_atime
+    size = os.stat('/var/lib/samba/updates/%s/%s' % (i, fname)).st_size
+
+    # File access time exceedes max age or size is < 900kb
+    if ((today - atime) > maxAge) or (size < 921600):
+        # Remove from database.
+        clearUpdate(fname)
+        # Remove from filesystem
+        os.system('rm -rf /var/lib/samba/updates/%s' % i)
+

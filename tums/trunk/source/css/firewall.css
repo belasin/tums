@@ -1,0 +1,449 @@
+/***********	VIOLATION ANNCOUNCEMENT	*****************/
+
+#securityNotice {
+    width: 480px;
+    border: 3px solid #c00;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    padding: 20px 20px 20px 120px;
+    color: #c00;
+    background: url(../images/violation-icon.png) no-repeat 11px 17px;
+    margin-bottom: 15px;
+}
+
+#securityNotice h1 {
+    margin: 0;
+    padding: 0;
+    
+}
+
+#securityNotice p {
+    
+}
+
+#messageBox div.error {
+    width: 480px;
+    border: 3px solid #c00;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    padding: 20px 20px 20px 120px;
+    color: #c00;
+    background: url(../images/violation-icon.png) no-repeat 11px 17px;
+    margin-bottom: 15px;
+}
+
+#messageBox div.notice {
+    width: 520px;
+    border: 3px solid #0c0;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    padding: 20px 10px 10px 80px;
+    color: #0c0;
+    background: url(../images/all-good-icon.png) no-repeat 5px 5px;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+/*
+#messageBox {
+    display: block;
+    padding: 0px;
+    width: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    margin-top: 0px;
+}
+
+
+#messageBox div {
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+    display: block;
+}
+*/
+
+/**************** TABLES ************************/
+
+div.tabPane table.tableHeaderRow {
+width: 100%;
+background: transparent url("../images/gradMB.png") repeat-x left 0;
+}
+
+
+
+/***********	SETTINGS LINKS	*****************/
+
+#settingsLinks {
+    width: 600px;
+    height: 20px;
+}
+
+a#testFirewall,
+a#applyFirewall,
+a#fwAddRuleButton,
+a.addRuleBtn {
+    display: block;
+    width: 120px;
+    height: 25px;
+    padding: 10px 0 0 32px;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+a.addRuleBtnTR {
+    height: 25px;
+    padding: 10px 0 0 32px;
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+a#testFirewall {
+    background: url(../images/firewall/test-settings-icon.png) no-repeat left 8px;
+    color: #f47a07;
+    float: left;
+}
+
+a#applyFirewall {
+    background: url(../images/firewall/apply-changes-icon.png) no-repeat left 8px;
+    color: #006B33;
+    margin-left: 20px;
+    float: right;
+}
+
+
+/***********	ADD RULE	*****************/
+
+a.addRuleBtn,
+a.addRuleBtnTR,
+a#fwAddRuleButton {
+    background: transparent url(../images/add.png) no-repeat left 8px;
+    width: 300px;
+    color: #006B33;
+}
+
+a.addRuleBtnTR {
+    width: auto;
+}
+
+/***********    NAT HEADERS     *****************/
+
+
+/***********    NAT RULES       *****************/
+/*
+ul#firewallForwardRules {
+    list-style: none;
+    display: block;
+    background: #eee;
+    padding: 0px;
+    width: 705px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+            margin-top: 0px;
+}
+
+
+ul#firewallForwardRules li {
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+    display: block;
+}
+
+ul#firewallForwardRules li table {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse:collapse;
+            font-size: 0.9em;
+            margin: 5px 0;
+}
+
+ul#firewallForwardRules li td {
+    padding: 3px 10px 3px 10px;
+    border: 0;
+}
+*/
+
+/***********	FIREWALL RULES HEADER	*****************/
+
+#firewallRulesHeader,
+.tableHeaderRow {
+    width:100%;
+    min-width: 650px;
+    height: 30px;
+}
+
+.dataTable {
+    width:100%;
+    border-collapse:collapse;
+    margin: 5px 0;
+    padding: 0 10px;
+    background: #eee;
+}
+
+#firewallRulesHeader th,
+.tableHeaderRow th
+{
+    text-align: left;
+    padding: 10px;
+}
+
+#firewallRulesHeader th.headMove { width: 10%;  }
+#firewallRulesHeader th.headRule { width: 10%; text-align: center; }
+#firewallRulesHeader th.headLabel { width: 13%; }
+#firewallRulesHeader th.headZone { width: 10%; text-align: center; }
+#firewallRulesHeader th.headPort { width: 10%; text-align: center; }
+#firewallRulesHeader th.headIP { width: 18%; text-align: center; }
+#firewallRulesHeader th.headProt { width: 10%; text-align: center; }
+#firewallRulesHeader th.headEdit { width: 10%; }
+#firewallRulesHeader th.headDel { width: 10%; }
+
+#firewallRules table.dyntableCont tr td {
+    border: 1px solid red;
+}
+
+/***********	RULES	*****************/
+
+ul.rulesList,
+ul#firewallRules {
+    list-style: none;
+    display: block;
+    background: #eee;
+    padding: 0px;
+    width: 100%;
+    min-width: 650px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    margin-top: 0px;
+}
+
+
+ul.rulesList li,
+ul#firewallRules li {
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+    display: block;
+}
+
+tbody.rulesList {
+    width: 100%;
+}
+
+ul.rulesList li table,
+ul#firewallRules li table,
+tr.rulesListItem {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse:collapse;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+
+
+ul.rulesList li td,
+ul#firewallRules li td {
+    padding: 3px 10px 3px 10px;
+    border: 0;
+}
+
+
+
+/*ul#firewallRules li.even { background: #eee;}
+ul#firewallRules li.odd  { background: #ddd;}*/
+
+
+.even { 
+    background: #fff; 
+    border-bottom: 2px dotted #ccc;
+    border-top: 2px dotted #ccc;
+}
+
+.odd { 
+    background: #eee;
+}
+
+.modified, .new { background: #efe; }
+
+
+.move {
+height: 45px;
+padding: 0px;
+margin: 0px;
+cursor:move;
+background: transparent url(../images/firewall/move-icon.png) no-repeat top left;
+}
+
+.move:hover {
+background: transparent url(../images/firewall/move-icon-hover.png) no-repeat top left;
+}
+
+.fwcol {
+    padding: 0px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.members, .delete, .edit .addrule {
+    cursor: pointer;
+    text-align: right;
+}
+
+.members {
+    background: transparent url(../images/firewall/delete-icon.png) no-repeat top right;
+    width: 45px;
+    height: 45px;
+}
+
+.members:hover {
+    background: transparent url(../images/firewall/delete-icon-hover.png) no-repeat top right;
+}
+
+
+.delete {
+background: transparent url(../images/firewall/delete-icon.png) no-repeat top right;
+width: 45px;
+height: 45px;
+}
+
+.delete:hover {
+background: transparent url(../images/firewall/delete-icon-hover.png) no-repeat top right;
+}
+
+
+.edit {
+background: transparent url(../images/firewall/edit-icon.png) no-repeat top right;
+width: 45px;
+height: 45px;
+}
+
+.edit:hover {
+background: transparent url(../images/firewall/edit-icon-hover.png) no-repeat top right;
+}
+
+.srclabel, .dstlabel {
+text-align: left;
+font-weight: bold;
+}
+
+/*********** firewall rule widths **********/
+
+ul#firewallRules  .move { width: 10%; }
+ul#firewallRules .rule { width: 10%; }
+ul#firewallRules .srclabel { width: 13%; }
+ul#firewallRules .srczone { width: 10%; } 
+ul#firewallRules .srcport { width: 10%; }
+ul#firewallRules .srcip { width: 18%; } 
+ul#firewallRules .protocol { width: 10%; }
+ul#firewallRules .edit { width: 10%; }
+ul#firewallRules .delete { width: 10%; }
+
+/*.dstlabel { width: 10px; }*/
+
+/*.dstzone { width: 50px; }*/
+
+/*.dstport { width: 100px; }*/
+
+/*.dstip { width: 100px; }*/
+
+
+ul.movableTable li{ 
+    border-bottom: 1px dotted #999; 
+}
+
+
+.dialogwin {
+background:#fff;
+width:auto;
+height:auto;
+position:absolute;
+float: left;
+border:1px solid gray;
+}
+
+.dialogcontent {
+padding-right: 10px;
+padding-top: 10px;
+}
+.dialogtopbar {
+padding-top: 3px;
+height:20px;
+background:#fff url(/images/gradMB.png);
+border-bottom:1px solid gray;
+cursor:move;
+text-align:center;
+color: #fff;
+font-weight: bold;
+}
+.dialogresizer {
+width:20px;
+height:20px;
+top:100%;
+margin-top:-20px;
+left:100%;
+margin-left:-20px;
+background:green;
+position:absolute;
+cursor:se-resize;
+}
+
+
+/****************	FIREWALL ERRORS	******************/
+
+li.security-error {
+background:#fcc;
+}
+
+ul#firewallRules li.security-error td {
+    padding: 3px 10px 3px 10px;
+    border: 0;
+    color: #900;
+}
+
+ul#firewallRules li.security-error td.srclabel, 
+ul#firewallRules li.security-error td.srczone, 
+ul#firewallRules li.security-error td.srcport, 
+ul#firewallRules li.security-error td.srcip 
+{ border-bottom: 1px dotted #900; }
+
+ul#firewallRules li.security-error td.move {
+background: transparent url(../images/firewall/error-icon.png) no-repeat 5px top;
+}
+
+/*Hide the action div with the policy form*/
+div#panelPolicy div.actions {
+display: none;
+}
+
+/***************** FORM BUTTONS ********************/
+
+input.cancelBtn,
+#firewallRulesForm-action-cancel {
+    background: transparent url(../images/cancel-up.png) no-repeat left top;
+    display: inline;
+    width: 100px;
+    height: 25px;
+    color: #fff;
+    font-size: 10px;
+    padding-left: 5px 0 0 25px;
+}
+
+input.submitBtn {
+    background: transparent url(../images/firewall/sub-up.png) no-repeat left top;
+    display: inline;
+    width: 100px;
+    height: 25px;
+    color: #fff;
+    font-size: 10px;
+    padding-left: 5px 0 0 25px;
+}
+
+
+
+/* CSS that doesn't suck */
+
+.movableTbody tr {
+    background: #aaa;
+}

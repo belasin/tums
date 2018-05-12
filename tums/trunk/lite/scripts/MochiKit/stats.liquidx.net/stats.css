@@ -1,0 +1,40 @@
+div.statbox {
+   width: 200px;
+   float: left;
+   padding: 10px;
+}
+
+table.stat {
+   padding-top: 10px;
+   width: 200px;
+   overflow: hidden;
+}
+
+table.stat td {
+   margin: 0 5px 2px 5px;
+   border-bottom: 1px solid #eeeeee;
+   padding: 3px;
+}
+
+table.stat tr.tree td {
+   background-color: #f9f9f9;
+}           
+
+table.stat thead td {
+   font-weight: bold;
+   color: #000000;
+}
+
+table.stat tr.child a {
+   color: #aaaacc;
+}
+
+table.stat tr.child td.label {
+   text-indent: 10px;
+}
+
+.invisible { display: none; }
+
+canvas.stat {
+   border: 1px solid #f0f0f0;
+}

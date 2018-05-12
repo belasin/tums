@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+
+##
+# Thusa
+# --------
+# expect.pl - Runs a command expecting a certain string then sending the result back.
+##
+use Expect;
+
+#Command to execute
+my $Command             = "/usr/sbin/smbldap-populate";
+#Parameters (Not sure where these go but i am sure they are important)
+my @Parameters          = ();
+
+#How long do we wait until we give up
+my $timeout             = 4;
+#String to wait for
+my $expect_string       = "ssword:";
+#Once the above string has been recieved what do we send in response. 
+my $send_data           = "pl134Clp!23AQ094oek1231";
+
+#No need to do anything past here
+my $exp = new Expect;
+
+$exp->spawn($Command, @Parameter)
+        or die "Cannot Spawn $Command: $!\n";
+
+$exp->expect($timeout,
+    [ $expect_string, \&send_response,],
+    [ $expect_string, \&send_response,],
+);
+
+$exp->soft_close();
+
+sub send_response {
+        $exp->send($send_data."\n");
+        exp_continue;
+}
+
+#So long fair well i need to say goodbye ... so long fair well i need to say goodbye ... GooodBYEEEE

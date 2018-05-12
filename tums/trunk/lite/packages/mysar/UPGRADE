@@ -1,0 +1,32 @@
+UPGRADE INSTRUCTIONS
+--------------------
+MySAR now uses a "wizard" to handle the installation. It should work fine, but be sure to backup your database before proceeding. It is recommended that you purge your existing database, to avoid any upgrade problems.
+
+
+Follow these steps:
+
+- Become root. For example:
+	su -
+  If your system is Ubuntu Linux, run the following instead:
+  	sudo bash
+
+- Move your current mysar directory out of the way. For example:
+	mv /usr/local/mysar /usr/local/mysar1.old
+If you are upgrading from a 2.0.X version, remember to keep you etc/config.ini file!
+  
+- Download the latest version of mysar from http://giannis.stoilis.gr/software/mysar/.
+
+- Extract this file to /usr/local/. For example:
+  	tar zxvf mysar-latest.tar.gz -C /usr/local
+
+- Since MySAR 2.0.13, a new C importer is provided in mysar/bin/mysar-binary-importer-v4/. It is faster and lighter and hopefully will completely replace the PHP one. Compile it, configure its /usr/local/etc/mysar.conf and change /usr/local/mysar/etc/mysar.cron accordingly.
+  	
+- Your should already have your Apache configured to point the "/mysar/" directory to the local directory "/usr/local/mysar/www/". So, just point your browser to the "/mysar/" directory of your server and follow the instructions, for example:
+	http://localhost/mysar/
+
+If you have any problems during(or after...) the installation, be sure to check the website for updates, frequently asked questions or support information. Mysar project now has a forum and a mailing list, try asking your questions there before contacting me directly.
+
+
+Regards
+- "Giannis Stoilis" <giannis@stoilis.gr>
+http://giannis.stoilis.gr/software/mysar/

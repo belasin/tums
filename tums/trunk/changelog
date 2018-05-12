@@ -1,0 +1,180 @@
+tums ($BUILDVERSION) unstable; urgency=low
+
+  * BugFix LDAP Samba password updating [Justin]
+  * BugFix LDAP User entry shell demangle [Justin]
+  * JQuery added to Vulani[Colin]
+  * Added PIM, baseline [Colin]
+  * Added Asterisk [Colin,Justin]
+  * Updated Firewall Interface [Colin]
+  * Remove Broken AVG support from update cache [Colin]
+  * Fixes for Zebra [Edd]
+  * Added check for routes Debian Network Configurator Plugin [Colin]
+  * Added Scheduled Vacations [Colin]
+  * Security Fix root and nobody user removed from the userlist [Colin]
+  * UPS Support [Colin]
+  * Removed FirewallAjax features merged into Firewall Interface[Colin]
+  * Bugfix in license handler, thanks edd for pointing it out [Colin]
+  * Added update tool [Colin]
+  * Various changes to VLAN configuration abilities [Colin]
+  * Added Active Directory LDAP support [Justin]
+  * Added Active Directory LDAP group mapping [Justin]
+
+ -- build-01 <support@vulani.net>  Wed, 05 Aug 2009 13:11:58 +0200
+
+tums (1.7.310) unstable; urgency=low
+
+  * BugFix Altered RAID rendering code to handle spares properly [Justin]
+  * Deprecated Xen support - Will migrate to KVM support instead as a WAP
+    module [Colin]
+  * BugFix#337 Network interface settings will now delete residual IP 
+    aliases [Colin]
+  * Mail RBL's are configurable in Mail->Blacklist->Subscriptions [Colin]
+  * Sender filter excludes hubbed hosts [Colin]
+  * Added "Help" link to documentation website [Justin]
+  * Fixed problem with flow collector - buffer purged before records completely
+    saved [Colin]
+  * Migrating to shorewall-perl
+  * Changed Tools menu to change cursor to pointer [Colin]
+  * Added email discalimer system [Colin]
+  * More networking bug fixes for empty gateway [Justin]
+  * Added tool for testing mail address delivery [Colin]
+
+ -- build-01 <support@vulani.net>  Sat, 13 Jun 2009 10:40:31 +0200
+
+tums (1.7.300) unstable; urgency=low
+
+  * Fixes to DNS manager to include default zone. [Colin]
+  * Adding support for forwarding zones [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:11:19 +0200
+
+tums (1.7.290) unstable; urgency=low
+
+  * Changes to routing interface to improve speed and allow device routes
+    [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:15:15 +0200
+
+tums (1.7.280) unstable; urgency=low
+
+  * Changed PPP system to restart shorewall when links down as well as return.
+    [Colin]
+  * Shorewall kills itself when multiple PPP interfaces are brought up/down
+    sequentialy. Prevents long delays in restoring service. [Colin]
+  * Updated blocking text on sender not local [Colin]
+  * Overhaul spam-filter system [Warwick]
+  * Fixes Dashboard crash when interface is down or has no addresses [Justin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:17:54 +0200
+
+tums (1.7.270) unstable; urgency=low
+
+  * Fixed problem in changing network settings [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:18:16 +0200
+
+tums (1.7.260) unstable; urgency=low
+
+  * Updating child URL code to fix various problems [Colin]
+  * Changed RAID parser [Colin]
+  * Added OpenVPN to high-port list [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:18:40 +0200
+
+tums (1.7.250) unstable; urgency=low
+
+  * Fixes BIND configuration where there is only one LAN interface which uses
+    DHCP [Colin]
+  * Adjustments to FlowCollector code to try make sure the physical server is
+    accounted properly. [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.200) unstable; urgency=low
+
+  * Fixes web report error. Child must not take multiple segments. [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.190) unstable; urgency=low
+
+  * Moved SNMP indexes up by 200 to avoid conflicting with kernel interface
+    names [Colin]
+  * Added Pythonic NTLM generator to simplify user adding procedure [Colin]
+  * Refactored LDAP library to retry queries before failure [Colin]
+  * Upgraded codebase to Twisted 8.2.0 [Colin]
+  * Corrected bug in utility library to bypass the audit file if it is not
+    readable. [Justin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.140) unstable; urgency=low
+
+  * Added lower border to prevent text cut-off [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.130) unstable; urgency=low
+
+  * Per-domain statistics in Mail Queue. Allows refresh of mail for each domain
+    [Colin]
+  * Adjusted topology map to include device names [Colin]
+  * Topology map automatically scales verticaly to optimise drawing [Colin]
+  * Fixed error with topology map alignment calculations [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.120) unstable; urgency=low
+
+  * Upgraded Axiom storage engine [Colin]
+  * Modifying store process initialisation to prevent bootup crashes [Colin]
+  * Implementing various Lenny changes and final improvement of process control
+  * Final merge of Lenny build system [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.050) unstable; urgency=low
+
+  * Activating Axiom store process - improves maintenance of flow database
+  * Adding graphs to Network Statistics [Colin]
+  * Firewall warns against poor security choices [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.040) unstable; urgency=low
+
+  * Network statistics now give full statistics on a per-interface basis
+    [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.030) unstable; urgency=low
+
+  * Improved performance of log viewer [Colin]
+  * Ensure that logs are read from the end by 1MB to remove problems of
+    log being too large to view (Memory overflow error) [Colin]
+  * Ensure logs are read completely from seek point so that the latest 
+    activity is seen [Colin]
+  * Introduce a filter to search through logs, as well as negative 
+    filter to illiminate items [Colin]
+  * Ensures that filtered items are still grouped, so searching through 
+    exim main log produces stacked transactions. [Colin]
+  * All user activity is logged to a separate log file and shown through 
+    the Log viewer [Colin]
+  * Log viewer checks against list of defined log files to prevent 
+    possible arbitrary file viewing. [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.7.010) unstable; urgency=low
+
+  * Dashboard displays IP addresses assigned to network interfaces [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200
+
+tums (1.6.990) unstable; urgency=low
+
+  * SMTP Interface/bind ip was not deletable [Colin]
+  * Removed DSBL from blacklists [Colin]
+
+ -- build-01 <support@vulani.net>  Thu, 04 Jun 2009 16:19:01 +0200

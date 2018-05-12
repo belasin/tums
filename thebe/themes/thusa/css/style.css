@@ -1,0 +1,157 @@
+body {
+    background: #fff;
+    padding: 0em 2em 0em 2em;
+    color: #666;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size:0.8em;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
+/* Page divisions */
+
+#pageTitle {
+    margin-bottom: 2em;
+    height: 5.5em;
+}
+
+#pageTitle img{
+}
+
+#pageContent{
+    border: 1px solid #e0e0e0;
+    padding: 1em;
+}
+
+#userMenu {
+    position: absolute;
+    right: 3em;
+    top: 3em;
+}
+
+#blueMenuBar {
+    background-image: url('/images/default-bg.gif');
+    margin-bottom:2em;
+}
+
+#blueMenuBar td{
+    border-right: 1px solid #ddd;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#blueMenuBar a{
+    color: #fff;
+    text-decoration: none;
+    font-weight:bold;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+#greySplitterBar {
+    background-image: url('/images/nav-bg-reverse.gif');
+    height: 1em;
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+}
+
+.roundedBlock{
+    background: #fff;
+    color: #666;
+    margin-bottom: 1em;
+}
+
+/* Can be anything hard left or hard right */
+.hardRight{
+    float: right;
+    clear: right;
+    height: 1px;
+}
+
+.hardLeft{
+    position:absolute;
+    height: 1px;
+    font-size: 1em;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+/* Rounded block edges */
+.blockTop{
+    background: url(/images/top.png);
+    height: 15px;
+}
+    
+.blockBottom{
+    background: url(/images/bottom.png);
+    height: 15px;
+}
+
+.blockLeft{
+    background: url(/images/left.png);
+    width: 5px;
+}
+
+.blockRight{
+    background: url(/images/right.png);
+    width:5px;
+}
+
+.blockContent{
+    padding: 1em;
+}
+
+
+/* Menu stylings */
+.menuBlock  {
+    padding-left: 1em;
+}
+
+.menuBlock li{
+    display: block;
+    margin-left: 1.5em;
+}
+
+.tabPane {
+    padding: 1em;
+    margin-left: 1px;
+    border: 1px solid #BBB;
+}
+
+.listing {
+    background: #eee;
+    border-collapse: collapse;
+}
+.listing td{
+    border: 1px solid #ddd;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.sortable {
+    background: #eee;
+    border-collapse: collapse;
+}
+
+.sortable td{
+    border: 1px solid #ddd;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#userLeftPane {
+    border-right: 1px solid #ddd;
+    width: 20em;
+}

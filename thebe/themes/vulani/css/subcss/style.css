@@ -1,0 +1,85 @@
+/* IMPORTS */
+@import url('subcss/resetcss.css');
+@import url('subcss/header.css');
+@import url('subcss/footer.css');
+@import url('subcss/content.css');
+
+
+
+
+
+
+
+
+/******************* MAIN LAYOUT  ******************/
+body {
+    position: relative;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #333333;
+    font-size: small;
+    background: #FFFFFF url(/images/bodyBack.gif) top left repeat-x;
+    padding-top: 20px;
+}
+
+#header {
+    width: 800px;
+    height: 73px;
+    margin: 0 auto;	
+    background: url(/images/headfootSprite.gif) left top no-repeat;
+    position: relative;
+    
+}
+
+#content {
+    padding-top: 10px;
+    width: 800px;
+    min-height: 800px;
+    margin: 0 auto;	
+    background: url(/images/contentBack.gif) top left repeat-y;
+}
+
+
+#content #main {
+    width: 500px;
+    float: left;
+    padding: 10px;
+}
+
+#content #right {
+    width: 250px;
+    float: right;
+    padding: 10px;
+}
+
+#footer {
+    clear: both;
+    width: 800px;
+    height: 73px;
+    margin: 0 auto;	
+    background: url(/images/headfootSprite.gif) left bottom no-repeat;
+    position: relative;
+
+}
+
+/******************* GLOBAL TAGS  ******************/
+
+a, a:visited, a:hover, a:active {
+    font-weight: bold;
+}
+
+a, a:visited { text-decoration: none; }
+a:hover, a:active {	text-decoration: underline; }
+
+/******************* GLOBAL STYLES  ******************/
+
+.messages {
+    padding: 10px;
+    margin: 5px 0px;
+    background: #FFCC00;
+    color: #F60;
+    border: 2px solid #F60;
+    font-weight: bold;
+}
+
+
+

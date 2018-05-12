@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <div id="mailTest-results"></div>
+    <h3>Test delivery</h3>
+    Provide an email address in the form below and submit to generate a report on how the mail will be delivered to the recipient.
+    <br />
+    <form id="mailTest" class="nevow-form" accept-charset="utf-8" action="" method="" enctype="multipart/form-data">
+        <div>
+            <div class="field string textinput" id="mailLog-mail-field">
+                <label class="label" for="mailTest-address">Address</label>
+                <div class="inputs">
+                    <input type="text" id="mailTest-address" value="" name="address" />
+                </div>
+                <div class="description">Email address to test</div>
+            </div>
+            <div class="actions">
+
+            <a href="#" id="mailTest-action-submit"><img src="/images/sub-up.png" /></a>
+            </div>
+        </div>
+    </form>
+</div>

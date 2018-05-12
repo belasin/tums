@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="-1"/>
+        <title>Vulani - Your network, your control</title>
+        <link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery/jQ.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <a href="/" id="logo"></a>
+            <ul id="nav">
+                <li><a href="http://www.vulani.net/features" id="FeaturesLink">Features</a></li>
+                <li><a href="http://www.vulani.net/case-studies" id="CaseLink">Case Studies</a></li>
+                <li><a href="http://wiki.vulani.net" id="SupportLink">Support</a></li>
+                <li><a href="http://www.vulani.net/contact" id="ContactLink">Contact</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="blueMenuBar">
+                <div n:render="topMenu"/>
+            </div>
+
+            <div class="tabBlock">
+                <div class="tabHeader"><div class="tabText">Account</div></div>
+                <div class="tabContent">
+                    <n:invisible n:render="user"/>
+                    <div style="float:right; clear: right">
+                        <a href="/Orders/Vulani/">
+                            <img src="/images/createlic.png"/>
+                        </a>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+
+ 
+            <div class="tabBlock">
+                <div class="tabHeader"><div class="tabText">Licenses</div></div>
+                <div class="tabContent">
+                    <table class="stdTable" cellspacing="0" >
+                        <tr style="background:#f3f3f3; font-weight: bold;">
+                            <n:invisible n:render="serverheadings"/>
+                        </tr>
+                        <n:invisible n:render="servers"/>
+                    </table>
+                </div>
+            </div>
+            
+            <n:invisible n:render="messageQueue"/>
+
+            <div id="main">
+                <div id="node-1" class="node clear-block">
+                    <div class="meta"></div>
+
+                    <div class="content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <a href="http://www.thusa.co.za" target="_blank" id="logo"></a>
+        </div>
+
+   </body>
+</html>

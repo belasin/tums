@@ -1,0 +1,1 @@
+if [ ! -e /usr/local/tcs/tums/backup.dat ]; then echo > /usr/local/tcs/tums/backup.dat ; fi

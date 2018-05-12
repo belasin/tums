@@ -1,0 +1,14 @@
+Thing that are being coded on the next release of the importer:
+
+* --DONE-- replace strtok() with my own split function. its faster and safer
+* table optimizer is not coded. Optimize, the tables after nnn records
+* when the network does not have a DNS server, a 'hosts' file will be looked up
+* --DONE-- importer command line database create/erase/cleanup
+* --DONE-- load compressed log files. 
+* --DONE-- More code cleanups are required :-)
+* --DONE-- All functions now will start with MySAR_ in front.
+* GNU Configure script enbled
+* Support for reading customized log formats
+* Optional InnoDB database creation support
+* --DONE -- Use Config file from command line
+* Use a file offset pointer on the log reader routine.

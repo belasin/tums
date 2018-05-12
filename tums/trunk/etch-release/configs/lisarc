@@ -1,0 +1,10 @@
+AllowedAddresses=192.168.0.1/255.255.255.0;
+BroadcastNetwork=192.168.0.1/255.255.255.0;
+DeliverUnnamedHosts=1
+FirstWait=30
+MaxPingsAtOnce=256
+PingAddresses=192.168.0.1/255.255.255.0;
+PingNames=
+SearchUsingNmblookup=1
+SecondWait=-1
+UpdatePeriod=300

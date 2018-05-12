@@ -1,0 +1,107 @@
+	Mysar binary importer copyright 2007 by Cassiano Martin <cassiano@polaco.pro.br>
+			Original binary importer, by David Todd
+			Mysar is a copyright of Giannis Stoilis 
+
+
+
+Instructions on how to build to importer:
+
+Make sure you have at least, a newer version of the mysql server on your machine before compile.
+Any version from 4.1.x or 5.x will work. On red hat, or fedora systems, make sure you have the
+mysql-devel packages installed. MySQL 4.0.x and older does not have support for precompiled statements.
+You will also need the zlib package installed on your machine. zlib is used to import compressed logs, and
+also for the mysql client.
+The configure script will check if your MySQL client support prepared statements.
+
+
+Uncompress the source tree in any directory:
+
+	tar xzvf mysar-importer-2.12.0.x.tar.gz
+
+After decompress, enter the folder and run the configure script. By default, the Autoconf & Automake scripts
+install the files in /usr/local/bin and /usr/local/etc.
+
+	./configure
+
+if you want to install the files in a different location, like /usr/bin and /etc use the following command line:
+
+	./configure --prefix=/usr --sysconfdir=/etc
+
+and then compile the package.
+
+	make
+
+should compile nice, and no errors displayed. Warnings can be ignored.
+Then as root, do the install:
+
+	make install
+	or
+	sudo make install
+
+That's is, the binary and the configuration file will be installed.
+Now edit the configuration where you specified: by default is on /usr/local/etc
+
+	vi /usr/local/etc/mysar.conf
+
+The conf file has the explanation of All items inside, and is easy to understand. The file keeps mysql 
+credentials, squid logfile path and the application PID path. Set up the config file, save and run the importer.
+if anything goes work, it will warn you.
+
+	mysar
+
+When running, it will show nothing on screen. if you want to see some progress, use the --stats command line.
+When finished, it will show the number of lines imported, ignored, and broken count.
+
+
+			** Some Command Line parameters **
+
+Mysar support both long and short command line parameters. Below is a brief of each command.
+Command line switches have priority over global configuration. If the value is set on the
+configuration file, and is disabled at command line, the value from configuration will be ignored.
+
+--resolver			this enables the DNS resolver
+--noresolver			this disables the DNS resolver
+--traffic			enable full traffic import from logfile
+--notraffic			disable full traffic import. navigation details wont be imported.
+--zip 		<file>		load a gzipped logfile for importing.
+--logfile 	<file>		load a different plain text logfile.
+--debug				enable some debug functionality. useful to find obscure problems.
+--config 	<file>		load an alternative configuration file, instead of /etc/mysar.conf
+--help				show the help, with command line options.
+--generatedb			shows the database creator. create or replace MySAR databases.
+--stats				show records status when importing.
+--optimizedb			force database optimize. the importer quits afer finish.
+--quiet				does not show any message. all error messages are logged within syslog.
+--kill				send a kill signal to a running importer. the running importer will shutdown
+				and save its runtime states. the new launched importer will continue the job.
+
+--groupdomains			group domains on the site viewer. instead of showing each URL for the domain,
+				it will sum all traffic size, and display the main domain on site viewer.
+				details will show its sub-domains, and so on.
+
+--offline			this will make the importer read the log file, and do not check for timestamps.
+				useful when importing old logfiles. It will not update any timestamps from the
+				last import. It will only insert data on the database and quit. be careful
+				to not import twice the same file, or all traffic and summaries will be duplicated!
+
+				For offline mode work, you should specify a logfile. can be either plain text, or
+				gzipped. If you dont specify --zip or --logfile it will not run, and show an error.
+
+
+QUICK NOTES:
+
+The database optimizer will run when the number of days specified on "keep" days is reached. for example:
+If you set 32 days on the "keep days" at the administration panel, it will optimize the DB at every 32 days.
+The optimize is not necessary to run every day, or every week. At least one month is okay.
+
+If you hit CTRL-C during a manual import, mysar will save its progress. if you run it again, it will start
+where stoppped. no traffic will be duplicated.
+
+If you want to stop a cron job, or an importer that is running, use the --kill switch. the current running
+importer will halt, and the new launched will take control.
+
+
+			** Thanks Section **
+
+I would like to thanks Giannis Stoilis for creating mysar. This program is all based on his work.
+Thanks to Tomas France for testing the beta versions, and for bug reporting

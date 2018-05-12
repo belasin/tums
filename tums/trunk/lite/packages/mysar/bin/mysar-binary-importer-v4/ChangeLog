@@ -1,0 +1,82 @@
+News for the version 2.0.12 importer
+
+* added support for disable the daemon from running, using the Administrative panel
+* added support for disable the DNS resolver
+* configuration is now saved on a config file, no more hard-coded
+* the resolver has been improved, dont try to resolve the hostname at every database insert,
+  and if the host is already resolved, dont try to resolve again.
+* fixed a bug in the -s switch, where the current db insertions are printed on the screen. 
+  more than 1000 insertions at a second, caused a division by zero. now it works  
+* minor bug corrected, and many cleanups on the code.
+* GCC 3.3.4 had some problems compiling
+
+News for the version 2.0.12.1 importer
+
+* fixed a bug in configuration file loader, sometimes random segfaults happened.
+* Added support for loading compressed gzip logfiles (Still under Testing!!!)
+  Only works in command line mode. Use the -z logfile.gz as argument.
+* Added support for importing only summaries. no extra data is imported, only domains
+  and sizes are imported. You cant see the files that were downloaded.
+  Enabling this option, will reduce database size and import time. Useful for BIG logfiles.
+* Schema Version test. If the importer detects a different Version on the database, it will
+  quit and show a warning message. running on versions prior to 2.0.7 will not work, AFAIK.
+
+News for the version 2.0.12.2 importer
+
+* Database create support. using the -g switch, its possible to create a new, replace
+  a database ony any server running mysql.
+
+News for the version 2.0.12.3 importer
+
+* Changed the -c switch to -z
+* Rewritten the token splitting routine to a better one. now is crash proof and does not
+  make use of strtok(), which is deprecated.
+* debug core routines written
+* Import time reduced 5%. 1 million records on a local mysql server, in 15 minutes with DNS
+  resolving enabled and traffic importing activated.
+* code cleanups, and reorganization. Core functions now always start with MySAR_
+* Testing releases will compile with the -g -O0 flag. no performance flags, optimized only for debuggin'
+  if you want to have performance, modify the Makefile, and change the value
+
+News for the version 2.0.12.4 importer
+
+* fixed a leak in the split routine, where old data could be reached in memory.
+* MySAR_print_msg accept bitwise parameters now
+* Massive code organization
+* command line parameters now use getopt_long
+* debug can be enabled or disabled now
+* Some obscure errors fixed, specially with globals variables getting uninitialized.
+* Mysql variables are not global now.
+* added two fields to the database layout, lastLogOffset and firstLogTimestamp
+* updated inCache code fields with the last information from squid wiki
+* logfile offset save/load now implemented, no need to date compare every record on startup.
+* Zero bytes records are discarded now, increasing processing power
+* sql.c reorganization. no code repeating.
+* moved MySAR_print_msg to MySAR_print
+* removed the update traffic code, it was useless. code now first get UserID and SiteID before insert.
+* Database optimizer coded. it runs when the number of kept days is reached. eg: at every 32 days.
+  the optimizer can also be executed by command line, with --optimizedb
+* A bug showed up when splitting the domain from URL, fixed.
+* Lock file support.
+* --kill: sends a stop signal to a running importer, eg: had been launched by cron, and you want to stop it, without losing
+  all its progress. this will halt it, and save all progress. the new launched importer will continue the work, where the killed one
+  stopped.
+* Domain grouping support. this prevents from the importer generating lots of repeated sub-domains on sites
+  viewer. the site viewer will show the main domain, and on details sub-domains will be included.
+  the traffic sizes are all summed for the main domain.
+  
+  eg: with grouping:
+       domain.com (sites view)
+       |
+       \_ images.domain.com  (details view)
+       \_ report.domain.com  (details view)
+       \_ xxx.img.domain.com (details view)
+
+  without grouping:
+       domain.com         (sites view)
+       images.domain.com  (sites view)
+       report.domain.com  (sites view)
+       xxx.img.domain.com (sites view)
+
+* package now uses GNU Automake & Autoconf, for an easy deploy.
+* I forgot some things.... :-)

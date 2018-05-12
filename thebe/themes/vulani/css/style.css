@@ -1,0 +1,152 @@
+/* IMPORTS */
+@import url('subcss/resetcss.css');
+@import url('subcss/header.css');
+@import url('subcss/masthead.css');
+@import url('subcss/footer.css');
+@import url('subcss/content.css');
+@import url('subcss/thebe.css');
+
+
+
+/******************* MAIN LAYOUT  ******************/
+body {
+    position: relative;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #333333;
+    font-size: small;
+    background: #FFFFFF url(/images/bodyBack.gif) top left repeat-x;
+    padding-top: 20px;
+}
+
+#header {
+    width: 800px;
+    height: 73px;
+    margin: 0 auto;    
+    background: url(/images/headfootSprite.gif) left top no-repeat;
+    position: relative;
+    
+}
+
+#content {
+    padding-top: 10px;
+    width: 800px;
+    min-height: 600px;
+    margin: 0 auto;    
+    background: url(/images/contentBack.gif) top left repeat-y;
+    overflow: hidden;
+}
+
+
+#content #main {
+    width: 500px;
+    float: left;
+    padding: 10px;
+}
+
+#content #right {
+    width: 250px;
+    float: right;
+    padding: 10px;
+}
+    
+#footer {
+    width: 800px;
+    height: 73px;
+    margin: 0 auto;    
+    background: url(/images/headfootSprite.gif) left bottom no-repeat;
+    position: relative;
+
+}
+
+/******************* GLOBAL TAGS  ******************/
+
+a, a:visited, a:hover, a:active {
+}
+
+a, a:visited { text-decoration: none; }
+a:hover, a:active {    text-decoration: underline; }
+
+strong {    font-weight: bold; }
+
+/******************* GLOBAL STYLES  ******************/
+
+.messages {
+    padding: 10px;
+    margin: 5px 0px;
+    background: #FFCC00;
+    color: #000;
+    border-bottom: 2px solid #F60;
+    border-right: 2px solid #F60;
+    font-weight: bold;
+}
+
+.BigRounded {
+     -moz-border-radius-topleft: 15px;  
+     -moz-border-radius-topright: 0px;  
+     -moz-border-radius-bottomright: 15px;  
+     -moz-border-radius-bottomleft: 0px;  
+     -webkit-border-top-left-radius: 15px;  
+     -webkit-border-top-right-radius: 0px;  
+     -webkit-border-bottom-left-radius: 0px;  
+     -webkit-border-bottom-right-radius: 15px;  
+}
+
+.SmallRounded {
+     -moz-border-radius-topleft: 5px;  
+     -moz-border-radius-topright: 0px;  
+     -moz-border-radius-bottomright: 5px;  
+     -moz-border-radius-bottomleft: 0px;  
+     -webkit-border-top-left-radius: 5px;  
+     -webkit-border-top-right-radius: 0px;  
+     -webkit-border-bottom-left-radius: 0px;  
+     -webkit-border-bottom-right-radius: 5px;  
+
+}
+
+.clearIt {
+    clear: both;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.ornj {
+    color: #F93;
+}
+
+input, textarea, select {    
+    padding: 4px;
+    background: url(/images/gradientBack.gif) top left repeat-x #fff;
+    border-bottom: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    color: #999999;
+    font-size: 0.9em;
+    font-weight: bold; 
+    margin: 5px 0px;
+    margin-left: 10px;
+}
+
+select {
+    width: 200px
+}
+
+#main .form-item .description p {
+    color:#999;
+    font-size:0.8em;
+}
+
+
+
+/******************** OVERRIDES **********************/
+
+body.admin-menu {
+    margin-top: 0px !important;
+}
+

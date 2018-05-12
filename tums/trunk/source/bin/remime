@@ -1,0 +1,64 @@
+#!/usr/bin/python
+from email.MIMEText import MIMEText
+from email import parser
+import email, sys, StringIO
+
+mail = ''.join(sys.stdin.readlines())
+
+msg = email.message_from_string(mail)
+
+try:
+    text = open('/usr/local/tcs/tums/data/gldisclaimer').read().strip('\n')
+    firstSegment = text.split('\n')[0]
+except:
+    print mail
+    sys.exit(0)
+
+bar = "="*70
+if msg.is_multipart():
+    msg = StringIO.StringIO(msg.as_string())
+    msg.seek(0)
+    nmsg = ""
+    fboundry = ""
+    lastMime = ""
+    lastEncode = ""
+    skip = False
+
+    for i in msg:
+        if firstSegment in i:
+            skip = True
+
+        if ("Content-Type:" in i) and fboundry:
+            lastMime = i.split(';')[0].split(':')[-1].strip()
+
+        if "Content-Transfer-Encoding:" in i:
+            try:
+                lastEncode = i.split(':')[-1].strip()
+            except:
+                pass
+
+        if 'boundary="' in i:
+            fboundry = i.split('"')[1]
+
+        elif lastMime and fboundry in i:
+            if (lastMime in ["text/html", "text/plain"]) and (not skip):
+                if lastEncode != "base64":
+                    nmsg += "\n"+text+"\n"
+                    lastMime = ""
+                    lastEncode = ""
+
+        nmsg += i
+    appended = False
+    print nmsg
+
+else:
+    msg = msg.as_string()
+
+    if "Content-Transfer-Encoding: base64" in msg:
+        print msg
+        sys.exit(0)
+
+    if not firstSegment in msg:
+        msg += "\n"+bar+"\n"+ text
+
+    print msg

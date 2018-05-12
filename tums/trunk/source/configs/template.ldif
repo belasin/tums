@@ -1,0 +1,52 @@
+EDIT THE LINE BELOW WHERE IT SAYS EDIT HERE -> !!
+AND DELETE THESE THREE LINES AND THE WORDS
+"EDIT HERE -> !! "
+dn: o=BPEXAMPLE
+description: bpexample.Friendly
+objectclass: organization
+objectclass: top
+o: BPEXAMPLE
+
+dn: cn=Manager,o=BPEXAMPLE
+objectclass: organizationalRole
+cn: Manager
+
+dn: dc=za,o=BPEXAMPLE
+dc: za
+objectclass: dcObject
+objectclass: domain
+o: BPEXAMPLE
+
+dn: dc=co,dc=za,o=BPEXAMPLE
+dc: co
+objectclass: dcObject
+objectclass: domain
+o: BPEXAMPLE
+
+dn: dc=bpexample,dc=com,o=BPEXAMPLE
+EDIT HERE -> !! dc: bpexample
+description: bpexample.Friendly
+objectclass: dcObject
+objectclass: domain
+o: BPEXAMPLE
+
+dn: ou=People,dc=bpexample,dc=com,o=BPEXAMPLE
+ou: People
+objectclass: organizationalUnit
+
+dn: uid=root,ou=People,dc=bpexample,dc=com,o=BPEXAMPLE
+o: bpexample.Friendly 
+objectclass: inetorgperson
+objectclass: thusaUser
+cn: Root User
+givenName: Root
+sn: User
+uid: root
+mail: root@bpexample.com
+mailAlternateAddress: webmaster@bpexample.com
+mailAlternateAddress: postmaster@bpexample.com
+mailMessageStore: /var/spool/mail/root@bpexample.com
+userPassword:: e1NIQX0rR1cxTmlPeElmMDA3bFFteDVMbHd6cjR3aWM9
+employeeType: squid
+employeeType: tumsAdmin
+accountStatus: active

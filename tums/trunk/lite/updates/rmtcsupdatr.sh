@@ -1,0 +1,1 @@
+rm /etc/cron.daily/tcs-updatr

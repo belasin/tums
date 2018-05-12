@@ -1,0 +1,67 @@
+/* CSS Document */
+
+#content #masthead {
+	position: relative;
+	background: url(/images/header-image.jpg) 1px 0px no-repeat;
+	width: 798px;
+	height: 300px;
+	overflow: hidden;
+	margin: 0 0 0.5em 0;
+}
+
+.front #content #masthead  {
+	display: block;
+}
+
+#content #masthead h1.networkHeading {
+	font-size: 2.3em;
+	color: #FF9933;
+	position: absolute;
+	top: 80px;
+	left: 300px;
+	font-weight: bold;
+}
+
+#content #masthead h1.controlHeading {
+	font-size: 3.3em;
+	color:#FF6633;
+	position: absolute;
+	top: 105px;
+	left: 389px;
+	font-weight: bold;
+}
+
+#content #masthead h1.byline {
+	font-size: 0.9em;
+	color:#666;
+	position: absolute;
+	top: 160px;
+	left: 300px;
+	font-weight: bold;
+	line-height: 1.3em;
+}
+
+#content #masthead ul {
+	list-style-type: disc;
+}
+
+#content #masthead ul.leftList {
+	left:320px;
+	line-height:1.4em;
+	position:absolute;
+	top:200px;
+	color: #666;
+	font-weight: bold;
+}
+
+#content #masthead ul.rightList {
+	left:575px;
+	line-height:1.4em;
+	position:absolute;
+	top:200px;
+	color: #666;
+	font-weight: bold;
+}
+
+ 
+

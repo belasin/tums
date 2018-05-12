@@ -1,0 +1,25 @@
+# Tums cron jobs
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/tcs/tums/
+
+# Graphing
+*/5 * * * * root /usr/local/tcs/tums/getGraph.py       >/dev/null 2>&1
+*/5 * * * * root /usr/local/tcs/tums/createGraph.py    >/dev/null 2>&1
+
+# Mail statistics
+0   * * * * root /usr/local/tcs/tums/existat.py        >/dev/null 2>&1
+0   * * * * root /usr/local/tcs/tums/existat-render.py >/dev/null 2>&1
+0   0 * * * root /usr/local/tcs/exilog-tums/exilog_cleanup.pl >/dev/null 2>&1
+
+# Squid logs
+*/5 * * * *       root    /usr/local/mysar/bin/mysar-resolver.php > /usr/local/mysar/log/mysar-resolver.log 2>&1
+0 0 * * *       root    /usr/local/mysar/bin/mysar-maintenance.php > /usr/local/mysar/log/mysar-maintenance.log 2>&1
+*/5 * * * *       root    /usr/local/mysar/bin/mysar-importer.php > /usr/local/mysar/log/mysar-importer.log 2>&1
+
+0  0 * * * root /usr/local/tcs/exilog-tums/exilog_cleanup.pl >/dev/null 2>&1
+
+# Periodic runners
+*/5 * * * *       root    /usr/local/tcs/tums/syscripts/runPeriodic.sh > /dev/null 2>&1
+10  0 * * *       root    /usr/local/tcs/tums/syscripts/runDaily.sh > /dev/null 2>&1
+
+# Ensure time is always updated 
+0  0  * * *       root    /usr/sbin/ntpdate -su pool.ntp.org

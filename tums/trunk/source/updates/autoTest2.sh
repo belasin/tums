@@ -1,0 +1,1 @@
+echo "This was auto pulled" | /bin/mail -s "TUMS Status" colin@thusa.co.za

@@ -1,0 +1,6 @@
+# See exports(5) for a description.
+# This file contains a list of all directories exported to other computers.
+# It is used by rpc.nfsd and rpc.mountd.
+#/mnt                        192.168.0.0/255.255.255.0(rw,no_root_squash,sync)
+/opt/ltsp-4.1/i386          192.168.0.0/255.255.255.0(ro,no_root_squash,async)
+/var/opt/ltsp/swapfiles     192.168.0.0/255.255.255.0(rw,no_root_squash,async)

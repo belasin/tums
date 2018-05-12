@@ -1,0 +1,14 @@
+Ä}qUnevow_packageqctwisted.plugin
+CachedDropin
+q)Åq}q(U
+moduleNameqUnevow.plugins.nevow_packageqUdescriptionqNUpluginsq	]q
+ctwisted.plugin
+CachedPlugin
+q)Åq}q(Uprovidedq]q(ctwisted.plugin
+IPlugin
+qcnevow.inevow
+IJavascriptPackage
+qeUdropinqhUnameqUnevowPkgqhUq
+    An IJavascriptPackage implementation that scans an on-disk hierarchy
+    locating modules and packages.
+    qubaubs.

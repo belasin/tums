@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><roundcube:object name="pagetitle" /></title>
+
+<style type="text/css">
+body, html {
+   /* background: #FFE4B1;*/
+    background: #ffffff;
+    vertical-align: center;
+    height: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+
+#pageContainer{
+    text-align:center;
+}
+
+#centerBox {
+    margin:0px auto;
+    height: 550px;
+    width: 550px;
+    background: url('/images/vulanilogin.png') no-repeat;
+    vertical-align: middle;
+
+}
+#blockTop {
+    height: 110px;
+}
+#centerBlock{
+    height: 94px;
+    height: expression('114px');
+    text-align:left;
+    padding: 10px;
+}
+#menuBlock{
+    height: 40px;
+    padding: 6px;
+    padding-right: 8em;
+    padding-top: 2em;
+    text-align:right;
+}
+img {
+    border: none;
+}
+
+</style>
+
+</head>
+    <body>
+        <table height="100%"  width="100%"><tr height="100%"><td>
+            <div id="centerBox" valign="middle">
+                <div id="blockTop"></div>
+                <div id="menuBlock">
+                    <form name="form" method="post" id="./">
+                        <table style="text-align: center" align="right">
+                            <tr>
+                                <td align="right">
+                                    <roundcube:object name="loginform" form="form" />
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>
+                                    <input type="image" src="/images/sub-log.png" alt="Login" value="<roundcube:label name="login" />"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <script type="text/javascript">
+                        document.forms[0].username.focus();
+                    </script>
+                </div>
+            </div>
+        </td></tr></table>
+    </body>
+</html>

@@ -1,0 +1,664 @@
+body {
+    background: #fff;
+    padding: 0em 2em 0em 2em;
+    color: #666;
+    font-family:arial, verdana;
+    font-size:0.8em;
+}
+
+/*h1 {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+h3 {
+    padding: 0;
+    margin: 0;
+}*/
+
+/* Page divisions */
+
+a.noUnderline {
+    display:block;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+#footer {
+    text-align:right;
+}
+#footer a{
+    color: #bbb;
+}
+
+#pageTitle {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2em;
+    height: 6.5em;
+}
+
+#pageTitle img{
+    float: left;
+    clear: left;
+}
+
+#pageTitle ul{
+    text-align: right;
+    float: right;
+    clear: right;
+    padding: 0;
+}
+
+#pageTitle ul li{
+    display: block;
+    clear: right;
+    float: left;
+    text-align: right;
+    padding-left: 3em;
+    padding-right: 0.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-right: 1px solid #e0e0e0;
+    font-size: 0.8em;
+}
+
+#pageTitle ul li h1{
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    font-size:1.6em;
+}
+
+#pageTitle ul li h1 a{
+    text-decoration: none;
+    color: #777;
+}
+
+#pageNote {
+    position: absolute;
+    left: 3em;
+    margin-top: 0.7em;
+    height: 10em;
+}
+
+#pageSide{
+    position: absolute;
+    border-top: 1px solid #e0e0e0;  
+    width: 15em;
+    left: expression('2.9em'); /* IE only */
+    margin-top: 3em;
+    height: 30em;
+}
+
+#pageContent{
+    border: 1px solid #e0e0e0;
+    margin-left: 15em;
+    padding: 1em;
+}
+
+#pageContent a{
+    font-size: 1em;
+}
+
+#pageNote h2{
+    padding: 0;
+    margin: 0;
+}
+
+.roundedBlock{
+    background: #fff;
+    color: #666;
+    margin-bottom: 1em;
+}
+
+/* Can be anything hard left or hard right */
+.hardRight{
+    float: right;
+    clear: right;
+    height: 1px;
+}
+
+.hardLeft{
+    position:absolute;
+    height: 1px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Rounded block edges */
+.blockTop{
+    background: url(/images/top.png);
+    height: 15px;
+}
+    
+.blockBottom{
+    background: url(/images/bottom.png);
+    height: 15px;
+}
+
+.blockLeft{
+    background: url(/images/left.png);
+    width: 5px;
+}
+
+.blockRight{
+    background: url(/images/right.png);
+    width:5px;
+}
+
+.blockContent{
+    padding: 1em;
+}
+
+
+/* Menu stylings */
+.menuBlock  {
+    padding-left: 1em;
+}
+
+.menuBlock li{
+    display: block;
+    margin-left: 1.5em;
+}
+
+input {       
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    /*color:#CE7E00;*/
+    color: #666;
+    margin-left: 0em;
+}
+
+.boolean input{
+    border: none;
+}
+
+.sequence input {
+    border: none;
+    margin-left: 10em;
+}
+
+.actions input{
+    border: none;
+    padding: 0;
+}
+
+textarea {
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    /*color:#CE7E00;*/
+    color: #666;
+}
+
+select {
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    /*color:#CE7E00;*/
+    color: #666;
+}
+
+
+p{
+    font-family:arial;
+}
+
+.set0{
+    border-right: 2px solid red;
+}
+
+.set1{
+    border-left: 2px solid lime;
+}
+
+a{
+    color:#000;
+    font-family:arial;
+    font-size:0.8em;
+}
+
+img{ 
+    border: none;
+}
+
+h3 img{
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
+#smallCube {
+    padding-right: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.ctree{
+    margin:0px;
+    padding:0px;
+}
+.ctree ul{
+    margin-left:20px;
+    padding-left:0px;
+    display:none;
+}
+.ctree li{
+    list-style-type:none;
+    vertical-align:middle;
+
+}
+.ctree li a{
+    color:#000;
+    text-decoration:none;
+    font-family:arial;
+    font-size:0.8em;
+    padding-left:2px;
+}
+
+h2 {
+    text-align: middle;
+}
+
+h2 img {
+    vertical-align: middle;
+}
+
+thead {
+    background: url(/images/gradMB.png);
+}
+
+#editForm {
+    margin-top: 0;
+}
+
+#addForm {
+    margin-top: 0;
+}
+
+.listing {
+    background: #eee;
+}
+.listing td{
+    border: 1px solid #ddd;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#matrix td{
+    text-align: center;
+}
+
+
+.pageBar {
+    display: block;
+    margin-left: 0em; 
+    margin-right: 0em;
+    right: 0;
+    height: 18px;
+    background: url(/images/gradMB.png);
+    background-repeat: repeat-x;
+}
+
+.snapLeft{
+    clear:left;
+    float: left;
+}
+
+.snapRight{
+    clear: right;
+    float: right;
+}
+
+
+#menuBar img {
+    display: inline;
+    float: left;
+    border: none;
+}
+
+#menuBar{
+    position: absolute;
+    top: 64px;
+    right: 0;
+    left: 0;
+    /* ie hack */
+    width: expression( ( document.documentElement.clientWidth )+ 'px' );
+}
+
+#pageFotter {
+    position: absolute;
+    bottom: 0px;
+}
+
+#rightBlockIFrame {
+    position: absolute;
+    padding: 0em;
+    left: 16.5em;
+    right:0px;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    width: expression( ( document.documentElement.clientWidth - 246)+ 'px' );
+    height: expression( ( document.documentElement.clientHeight - 127 )+ 'px' );
+}
+
+div#rightBlockIFrame {
+    padding: 1em;
+}
+
+#wholePage {
+    position: absolute;
+    padding: 1em;
+    left: 0;
+    right:0px;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    width: expression( ( document.documentElement.clientWidth - 26)+ 'px' );
+    height: expression( ( document.documentElement.clientHeight - 127 )+ 'px' );
+}
+
+#plainContent {
+    padding-left: 2em;
+}
+
+#sideCont{
+    position: absolute;
+    display: block;
+    margin-left: 1em;
+    width: 14em;
+    overflow: auto;
+    top: 1px;
+    bottom: 0px;
+    height: expression( ( document.documentElement.clientHeight - 86 )+ 'px' );
+    font-size: 110%;
+}
+
+#rightBlock div.field label {
+    width: 10em;
+    float: left;
+}
+        
+
+#rightBlock .inputs {
+    width: 26em;
+    margin-left: 10em;
+    margin-left: expression( '0px');
+}
+
+#rightBlock div.inputs label{
+    display: inline;
+    float: none;
+}
+
+#rightBlock .inputs textarea{
+    height: 6em;
+    width: 20em;
+}
+
+#rightBlock .checkboxField {
+    margin-left: 10em;
+
+}
+#wholePage .description {
+}
+
+#wholePage .inputs {
+    width: 26em;
+    margin-left: 10em;
+}
+
+#wholePage div.inputs label{
+    display: inline;
+    float: none;
+}
+
+#wholePage .inputs textarea{
+    height: 6em;
+    width: 20em;
+}
+ 
+#wholePage .checkboxField {
+    margin-left: 10em;
+
+}
+
+/*
+.checkedpassword .inputs label {
+    position: absolute;
+    left: 19.45em;
+    margin-top: 2.7em;
+}
+
+#editForm-userPassword-confirm {
+    margin-top: 1em;
+}
+
+#userSettings-userPassword-confirm {
+    margin-top:1em;
+}*/
+
+#editForm .checkboxmultichoice .inputs label {
+    position: absolute;
+    margin-top: 0.1em;
+    left: 25em;
+    border: none;
+}
+#addForm .checkboxmultichoice .inputs label {
+    position: absolute;
+    margin-top: 0.2em;
+    left: 25em;
+    border: none;
+}
+
+.menuPanelTitleText {
+        float:left;
+}
+
+#contentMenuPanel {
+        float: left;
+        margin: 0;
+        padding: 0 1em 1em 1em;
+        width: 250px;
+}
+
+div.menuPanel {
+        padding: 6px;
+}
+
+div.menuPanelTitle {
+        background: #ebeadb;
+        background: url(/images/gradMB.png);
+/*        abackground: #e0e0c0;
+        aborder: 1px solid grey;
+        border-top: 1px solid #e2decd;
+        border-left: 1px solid #e2decd;
+        border-right: 1px solid #d6d2c2;
+        border-bottom: 1px solid #d6d2c2;
+/*        aborder: 1px solid #669;
+        aborder: 1px solid #c0c0c0;*/
+        height: 14px;
+        padding: 2px 2px 2px 6px;
+}
+
+span.menuPanelTitle {
+    font-weight: bold;
+    font-family:arial
+    font-size: 1em;
+}
+
+div.menuPanelTitle img {
+        position: relative;
+        float: right;
+        padding-right: 4px;
+        padding-top: 2px;
+        border: none;
+}
+
+div.menuPanelContentPanel {
+        padding-left: 5px;
+        padding-right: 5px;
+        clear: both;
+}
+
+div.menuPanelContent {
+        background: #efefef;
+        border-right: 1px solid #c0c0c0;
+        border-bottom: 1px solid #c0c0c0;
+        border-left: 1px solid #c0c0c0;
+        padding: 8px 4px 8px 8px;
+}
+
+A.MenuOptionLink {
+        color: #666;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        font-size: 0.8em;
+}
+
+A.MenuOptionLink:hover {
+        color: #EF2184;
+        text-decoration: none;
+}
+
+A.MenuTitleLink {
+        color: #EC9600;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 10px;
+}
+
+A.MenuTitleLink:hover {
+        color: #EF2184;
+        text-decoration: none;
+}
+
+.tabPane {
+    padding: 1em;
+    margin-left: 1px;
+    border: 1px solid #BBB;
+}
+
+
+#loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    width: expression( ( document.documentElement.clientWidth )+ 'px' );
+    height: expression( ( document.documentElement.clientHeight )+ 'px' );
+    text-align: center;
+    vertical-align: middle;
+}
+
+#loadingBack{
+    position: absolute;
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    filter: alpha(opacity=50); /* IE */
+    background-color: #000;
+    z-index:10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    width: expression( ( document.documentElement.clientWidth )+ 'px' );
+    height: expression( ( document.documentElement.clientHeight )+ 'px' );
+}
+
+#loadingFront{
+    position: absolute;
+    z-index: 11;
+    background: url('/images/loadback.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 30%;
+    left: 25%;
+    width: 472px;
+    height: 185px;
+    text-align: center;
+}
+
+#userBar {
+    background: url(/images/tab-cnrbottom.png);
+    background-position: bottom left;
+    color: #000;
+    position: absolute;
+    padding-left: 10px;
+    height: 1.9em;
+    margin-top: 0;
+    padding-top: 3px;
+    top: 0em;
+    right: 0em;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#userBar a{
+    padding: none;
+    text-decoration: none;
+    color: #777;
+    font-family:arial, verdana;
+    font-size:0.9em;
+}
+
+fieldset {
+    margin-left:1px;
+    width: 40em;
+    border: 1px solid #BBB;
+    text-decoration: none;
+}
+
+.userLine {
+    margin-left: 11em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.treeBranch {
+    padding-left: 1em;
+
+}
+
+.fileBrowserTab {
+    border: 1px solid #BBB;
+}
+
+.fileBrowserTree {
+    padding-top: 1em;
+    width: 16em;
+    height: 25em;
+    overflow: scroll;
+}
+
+.fileBrowserPane {
+    width: 100%;
+    height: 26em;
+    overflow: scroll;
+}
+
+.fileBrowserSide {
+    height: 25em;
+    border: none;
+}
+

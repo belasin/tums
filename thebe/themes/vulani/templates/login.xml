@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="-1"/>
+        <title>Vulani - Your network, your control</title>
+        <link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery/jQ.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <a href="/" id="logo"></a>
+            <ul id="nav">
+                <li><a href="http://www.vulani.net/features" id="FeaturesLink">Features</a></li>
+                <li><a href="http://www.vulani.net/case-studies" id="CaseLink">Case Studies</a></li>
+                <li><a href="http://wiki.vulani.net" id="SupportLink">Support</a></li>
+                <li><a href="http://www.vulani.net/contact" id="ContactLink">Contact</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="masthead">
+                <br/>
+                <table width="100%" align="center"><tr>
+                <td align="center">
+                    <div style="width:293px; height:250px; background:url(/images/regbg.png);">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <a href="http://reg.portal.vulani.net/">
+                            <img src="/images/regbtn.png"/>
+                        </a>
+                    </div>
+                </td>
+                <td align="center">
+                    <table>
+                        <tr>
+                            <td align="center">
+                                <div style="width:293px; height:250px; background:url(/images/loginbg.png);">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <form action="/__login__" id="loginForm" method="post">
+                                    <table style="text-align: center">
+                                        <tr>
+                                            <td>
+                                                <label for="username">Username:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="username" id="username" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="password">Password:</label>
+                                            </td>
+                                            <td>
+                                                <input type="password" name="password" id="password" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:left">
+                                                <label for="rememberMe">Remember Me</label>
+                                                <input type="checkbox" name="rememberMe" id="rememberMe" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center">
+                                                <input type="submit" value="Login" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                </tr></table>
+            </div>
+
+
+            <div id="main">
+                <div id="node-1" class="node clear-block">
+                    <div class="meta"></div>
+
+                    <div class="content">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer">
+            <a href="http://www.thusa.co.za" target="_blank" id="logo"></a>
+        </div>
+
+    </body>
+</html>

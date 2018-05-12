@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <table cellspacing="0" cellpadding="0">
+        <tr>
+            <td id="weekView" class="calTab"><div>Week</div></td>
+            <td id="monthView" class="calTab"><div>Month</div></td>
+        </tr>
+    </table>
+    <div id="calSlot" class="calSlot">
+        <div class="calBox">
+            <div id="monthViewPane" class="mVP" style="display:none">
+                <div id="monthTable"/>
+            </div>
+            <div id="weekViewPane" style="display:none">
+                <div id="dayRow"/>
+                <div id="weekViewScrollArea" class="weekViewScrollArea">
+                    <div id="weekViewCont"/>
+                    <div id="popupModal"/>
+                    <div id="entryModal"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

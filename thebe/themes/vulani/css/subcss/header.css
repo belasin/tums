@@ -1,0 +1,55 @@
+#header #logo {
+	position:absolute;
+	top:13px;
+	left:17px;
+	border: none;
+	display: block;
+	width: 189px;
+	height: 53px;
+	background: url(/images/logo.gif) top left no-repeat;
+}
+
+#header #nav {
+	height: 60px;
+	width: 520px;
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 15px;
+	overflow: hidden;
+}
+
+
+#header #nav li {
+	display: inline;
+}
+
+#header #nav li a, #header #nav li a:visited {
+	background: url(/images/menuSprite.gif) top left no-repeat;
+	height: 100px;
+	display: block;
+	float: left;
+	width: 130px;
+	padding-top: 77px;
+	color: #000000;
+	font-size: 1em;
+	text-decoration: none;
+	text-align: center;
+}
+
+#header #nav li a:hover, #header #nav li a:active {
+	background: url(/images/menuSprite.gif) top right no-repeat;
+}
+
+#header #nav #FeaturesLink,
+#header #nav #SupportLink,
+#header #nav #CaseLink,
+#header #nav #ContactLink {
+	position: absolute;
+	top: -70px;
+}
+
+#header #nav #FeaturesLink	{ left: 0px;}
+#header #nav #CaseLink		{ left: 130px;}
+#header #nav #SupportLink	{ left: 260px;}
+#header #nav #ContactLink 	{ left: 390px;}

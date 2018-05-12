@@ -1,0 +1,157 @@
+#main h2 {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #ff9933;
+	padding: 10px 10px 10px 40px;
+	margin: 0 0 10px 0;
+}
+
+#Features #main h2 {
+	background: url(/images/iconSprite.png) left top no-repeat;
+}
+
+#Case #main h2 {
+	background: url(/images/iconSprite.png) left -185px no-repeat;
+}
+
+#Tour #main h2 {
+	background: url(/images/iconSprite.png) left -92px no-repeat;
+}
+
+#Contact #main h2 {
+	background: url(/images/iconSprite.png) left -231px no-repeat;
+}
+
+.node-type-news-story #main h2, .page-news #main h2 {
+	background: url(/images/iconSprite.png) left -375px no-repeat;
+}
+
+.page-aggregator #main h2 {
+	background: url(/images/iconSprite.png) left -532px no-repeat;
+}
+
+#Page #main h2 {
+	background: url(/images/iconSprite.png) left -465px no-repeat;
+}
+
+#Sorry #main h2 {
+	background: url(/images/iconSprite.png) left -656px no-repeat;
+}
+
+#Welcome #main h2 {
+	background: url(/images/iconSprite.png) left -610px no-repeat;
+}
+
+#Download #main h2 {
+	background: url(/images/iconSprite.png) left -767px no-repeat;
+}
+
+
+
+
+#main h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #333;
+	padding: 10px 0px;
+}
+
+#main p {
+	line-height: 1.2em;
+	color: #333;
+	margin-bottom: 1em;
+}
+
+#main .node .content {
+	padding-left: 10px;
+}
+
+#main ul {
+	margin-left: 40px;
+}
+
+#main li {
+	list-style-type: circle;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
+}
+
+
+#main a, #main a:visited {
+	color: #000;
+}
+
+#main a:hover, #main a:active {
+	color: #F93;
+}
+
+/****************** BREAKOUT BOX  ******************/
+
+#main .breakout {
+	padding: 10px;
+	background: #eee;
+	margin:20px 0 20px 40px;
+}
+
+#main .breakout h3 {
+	padding: 10px 10px 10px 40px;
+	margin-bottom: 10px;
+}
+
+#Features #main .breakout h3 {
+	padding: 10px 10px 10px 40px;
+	background: url(/images/iconSprite.png) left top no-repeat;
+}
+
+.front #main .breakout h3 {
+	padding: 10px 10px 10px 40px;
+	background: url(/images/iconSprite.png) left -47px no-repeat;
+}
+
+
+/****************** HP STYLES  ******************/
+
+.front #main #screenImage {
+	display: block;
+	background: url(/images/vulanionscreen.jpg) top left no-repeat;
+	width: 230px;
+	height: 281px;
+	float: left;
+	margin-bottom:20px;
+}
+
+.front #main #screenMessage {
+	display: block;
+	width: 240px;
+	margin: 50px 0 20px 10px;
+	float: left;
+	padding: 0;
+}
+
+.front #main #screenMessage h3 {
+	line-height: 1.2em;
+}
+
+.front #main #screenMessage li {
+	font-weight: bold;
+}
+
+
+.front #main .first {
+	clear: both;
+}
+
+.front #main h2 {
+	display: none;
+}
+
+.front #main #ie6Disclaimer {
+	display: none;
+}
+
+*html .front #main #ie6Disclaimer {
+	display: block;
+}
+
+
+

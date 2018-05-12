@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <h2 id="Loading">Searching for other Vulani servers...</h2>
+    <div id="servers"></div>
+</div>

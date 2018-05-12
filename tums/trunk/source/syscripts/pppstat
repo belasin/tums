@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import os, sys
+unit = sys.argv[1]
+
+running = os.popen('ps aux | grep "pppd call wan%s" | grep -v grep | awk \'{print $2}\'' % unit).read().strip('\n')
+if not running:
+    running = []
+else:
+    running = running.split('\n')
+
+ifs = os.popen('ifconfig').read()
+
+if 'ppp%s' % unit in ifs:
+    print "running"
+
+elif running:
+    print "connecting"
+
+else:
+    print "disconnected"

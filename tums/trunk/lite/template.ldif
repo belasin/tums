@@ -1,0 +1,33 @@
+dn: o=TRYPTOPHAN
+description: Thusa
+objectclass: organization
+objectclass: top
+o: TRYPTOPHAN
+
+dn: cn=Manager,o=TRYPTOPHAN
+objectclass: organizationalRole
+cn: Manager
+
+dn: dc=za,o=TRYPTOPHAN
+dc: za
+objectclass: dcObject
+objectclass: domain
+o: TRYPTOPHAN
+
+dn: dc=co,dc=za,o=TRYPTOPHAN
+dc: co
+objectclass: dcObject
+objectclass: domain
+o: TRYPTOPHAN
+
+dn: dc=thusa,dc=co,dc=za,o=TRYPTOPHAN
+dc: thusa
+objectclass: dcObject
+objectclass: domain
+o: TRYPTOPHAN
+
+dn: ou=People,dc=thusa,dc=co,dc=za,o=TRYPTOPHAN
+ou: People
+objectclass: organizationalUnit
+
+

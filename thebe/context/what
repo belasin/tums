@@ -1,0 +1,5 @@
+This directory contains context information for 
+various things. In particular it contains the latest
+base template required for generating a TUMS
+configuration file. It may also contain other
+seed information for other sections

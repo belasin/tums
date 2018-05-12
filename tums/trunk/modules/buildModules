@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import os
+
+bDir = '/root/dev/modules'
+
+mods = [
+    'fetchmail',
+    'mailReroute',
+    'multiImport'
+]
+
+for mod in mods:
+    os.chdir(bDir)
+    os.system('svn export --force %s build/%s' % (mod, mod))
+    os.chdir(bDir +'/build')
+    os.system('rm %s.wap' % mod)
+    os.system('zip %s.wap -r %s' % (mod, mod))
+    os.system('mv %s.wap ../' % mod)
+
+

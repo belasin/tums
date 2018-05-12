@@ -1,0 +1,11 @@
+debug 
+asyncmap 0 
+modem 
+crtscts 
+lock 
+require-pap 
+refuse-chap 
+login 
+proxyarp 
+ms-dns 192.168.0.1
+192.168.0.1:192.168.0.2

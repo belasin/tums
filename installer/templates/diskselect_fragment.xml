@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <h3>Disk Layout</h3>
+    <div id="partTableContainer">
+        <div id="partTable"/>
+    </div>
+</div>

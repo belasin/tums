@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <title>tuminstall</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="pageTitle">
+            <img src="/static/images/vulani-tums.png" alt=""/>
+        </div>
+        <div id="pageNote">
+            <h2>Installer</h2>
+        </div>
+
+        <div id="pageSide" />
+
+        <div id="pageContent">
+            <h1>Vulani Installation</h1>
+            Thank you for choosing Vulani, your business services and edge networking platform, 
+            designed for ease of use and positioned towards the small to medium enterprise markets.
+            <br />
+            <br />
+            You will be required to provide information about this server's storage, networking, 
+            and support status.  Please enter this information accurately during installation.
+	    <br />
+	    <br />
+            <strong>Vulani will replace any software or data currently on this system's storage.
+            Please ensure you have backed up any important data or configuration before proceeding with
+            the install.</strong>
+            <br />
+            <br />
+            If you have been supplied with a license key, please be ready to enter it at the next
+            screen.
+            <br />
+            <br />
+            More information about Vulani can be found at www.vulani.net
+            <br />
+            <br />
+            <a href="/License"><img src="/static/images/next.png"/></a>
+        </div>
+    </body>
+</html>

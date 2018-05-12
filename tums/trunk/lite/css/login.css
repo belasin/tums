@@ -1,0 +1,42 @@
+body, html {
+    background: #FFE4B1;
+    vertical-align: center;
+    height: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+#pageContainer{
+    text-align:center;
+}
+
+#centerBox {
+    margin:0px auto;
+    height: 550px;
+    width: 550px;
+    background: url('/images/thusabg.png') no-repeat;
+    border: 1px solid black;
+    vertical-align: middle;
+
+}
+#blockTop {
+    height: 110px;
+}
+#centerBlock{
+    height: 94px;
+    height: expression('114px');
+    text-align:left;
+    padding: 10px;
+}
+#menuBlock{
+    height: 40px;
+    padding: 6px;
+    padding-right: 2em;
+    padding-top: 6em;
+    text-align:right;
+}
+img {
+    border: none;
+}
+

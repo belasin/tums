@@ -1,0 +1,10 @@
+# mail.bpexample.com
+
+<VirtualHost *>
+	DocumentRoot /var/www/localhost/htdocs/mail
+	Alias /roundcube /var/www/localhost/htdocs/mail
+	ServerName mail.bpexample.com
+	ErrorLog /var/log/apache2/mail.bpexample.com-error.log
+	CustomLog /var/log/apache2/mail.bpexample.com-access.log combined
+</VirtualHost>
+

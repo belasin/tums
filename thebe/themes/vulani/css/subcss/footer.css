@@ -1,0 +1,37 @@
+#footer #logo {
+	position: absolute;
+	top: 30px;
+	left: 20px;
+	display: block;
+	width: 96px;
+	height: 34px;
+	background: url(/images/thusaLogo.gif) top left no-repeat;
+}
+
+#footer a#facebook, #footer a#twitter, 
+#footer a#facebook:visited, #footer a#twitter:visited {
+	color: #000;
+	text-decoration: none;
+	padding: 10px 10px 10px 30px;
+	position: absolute;
+	top: 30px;
+	
+}
+
+#footer a#facebook:hover, #footer a#twitter:hover,
+#footer a#facebook:active, #footer a#twitter:active, {
+	text-decoration: underline;
+}
+
+#footer a#facebook {
+	background: url(/images/iconSprite.gif) -3px -278px no-repeat;
+	right: 10px;
+}
+
+#footer a#twitter {
+	background: url(/images/iconSprite.gif) -3px -322px no-repeat;
+	right: 250px;
+}
+
+
+

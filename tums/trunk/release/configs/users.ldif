@@ -1,0 +1,30 @@
+--> DELETE THIS LINE - alias/forward <--
+dn: uid=postmaster,ou=People,dc=bpexample,dc=com,o=BPEXAMPLE
+o: bpexample.Friendly
+objectclass: inetorgperson
+objectclass: thusaUser
+cn: BPEXAMPLE Postmaster
+givenName: BPEXAMPLE
+sn: POstmaster
+uid: postmaster
+mailAlternateAddress: webmaster@bpexample.com
+mailAlternateAddress: root@bpexample.com
+mail: postmaster@bpexample.com
+mailForwardingAddress: admin@bpexample.com
+accountStatus: active
+
+--> DELETE THIS LINE - full account <--
+dn: uid=admin,ou=People,dc=bpexample,dc=com,o=BPEXAMPLE
+o: bpexample.Friendly
+objectclass: inetorgperson
+objectclass: thusaUser
+cn: Admin User
+givenName: Admin
+sn: User
+uid: admin
+mail: admin@bpexample.com
+mailMessageStore: /var/spool/mail/admin@bpexample.com
+userPassword:: e1NIQX0rR1cxTmlPeElmMDA3bFFteDVMbHd6cjR3aWM9
+employeeType: squid
+accountStatus: active
+

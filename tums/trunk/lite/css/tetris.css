@@ -1,0 +1,118 @@
+	#wrapper { 
+		width:600px;
+		background:url(/images/t/grid-bg.gif) -10px -40px no-repeat;
+		position:relative; 
+                color:#fff;
+        }
+	#keys p {
+		font:10px verdana, arial, sans-serif;
+		color:#fff;
+		text-align:center;
+		margin:0;
+		padding:2px;
+	}
+	#ref {
+		display:absolute;
+		top:0;
+		left:0;
+		height:16px;
+		border-bottom:3px solid #fff;
+	}
+	#ref ul, #ref li {
+		list-style:none;
+		margin:0;
+		padding:0;
+	}
+	#ref ul li {
+		display:inline;
+		padding:0 6px;
+		font:12px verdana;
+		position:relative;
+		top:-5px;
+	}
+	#intro {
+		text-align:center;
+	}
+	#gridtop {
+		position:absolute;
+		z-index:100;
+		top:127px;
+		left:163px;
+		width:293px;
+		height:42px;
+	}
+	#stats span {
+		font:12px georgia,times,serif;
+		position:absolute;
+		left:510px;
+		display:block;
+		width:65px;
+		text-align:center;
+	}
+	#stats span#lines {
+		top:170px;
+	}
+	#stats span#level {
+		top:202px;
+	}
+	#stats span#score {
+		top:233px;
+	}
+	#shapes span {
+		position:absolute;
+		left:125px;
+		text-align:right;
+		font:12px georgia,times,serif;
+	}
+	#shapes #tri { top:180px; }
+	#shapes #square { top:222px; }
+	#shapes #zag2 { top:270px; }
+	#shapes #zag1 { top:322px; }
+	#shapes #line { top:370px; }
+	#shapes #el1 { top:405px; }
+	#shapes #el2 { top:445px; }
+	#next-shape {
+		position:absolute;
+		top:420px;
+		left:480px;
+		width:100px;
+		height:70px;
+		text-align:center;
+	}
+		table#grid {
+			width:250px;
+			border-collapse:collapse;
+			margin:0 auto;
+		}
+		table#grid td {
+			border-collapse:collapse;
+			width:17px;
+			height:24px;
+		}
+		table#grid td.orange {
+			background:url(/images/t/block-orange.gif) no-repeat;
+		}
+		table#grid td.red {
+			background:url(/images/t/block-red.gif) no-repeat;
+		}
+		table#grid td.red2 {
+			background:url(/images/t/block-pink.gif) no-repeat;
+		}
+		table#grid td.blue {
+			background:url(/images/t/block-blue.gif) no-repeat;
+		}
+		table#grid td.white {
+			background:url(/images/t/block-white.gif) no-repeat;
+		}
+		table#grid td.purple {
+			background:url(/images/t/block-purple.gif) no-repeat;
+		}
+		table#grid td.purple2 {
+			background:url(/images/t/block-green.gif) no-repeat;
+		}
+		table#grid td.fill {
+
+		}
+		table#grid tr.over td {
+			background:url(/images/t/block-white.gif) no-repeat !important;
+		}

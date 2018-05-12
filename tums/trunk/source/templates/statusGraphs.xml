@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+<td width="40%" valign="top">
+   <div class="roundedBlock"><img src="/images/mail-small.png"/><h1>System Status</h1><div>
+        <table>
+            <tr>
+                <td style="text-align:right">E-mails waiting for delivery: </td>
+                <td><div id="sysEmails"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">Volume of mail in queue: </td>
+                <td><div id="sysQueue"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">Server time: </td>
+                <td><div id="sysTime"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">Uptime: </td>
+                <td><div id="sysUptime"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">Users: </td>
+                <td><div id="sysUsers"/></td>
+            </tr>
+        </table>
+    </div></div>
+   <div class="roundedBlock"><img src="/images/services-small.png"/><h1>Services</h1><div>
+            <div id="processTable"/>
+    </div></div>
+    <div class="roundedBlock"><img src="/images/smbuser-small.png"/><h1>Fileserver Users</h1><div>
+        <div id="sysSessions"/>
+    </div></div>
+    <div class="roundedBlock"><img src="/images/storage-small.png"/><h1>Storage</h1><div>
+        <h3>Disk status</h3>
+        <div id="sysFS"/>
+        <h3>RAID status</h3>
+        <div id="sysRAID"/>
+    </div></div>
+</td>
+<td valign="top">
+    <div class="roundedBlock"><img src="/images/load-small.png"/><h1>Current Load</h1><div>
+        <div id="graphNode" n:render="load"/>
+    </div></div>
+    <div class="roundedBlock"><img src="/images/network-small.png"/><h1>Network Overview</h1><div>
+        <div id="networkLoads" n:render="interfaces"/>
+    </div></div>
+</td> 
+</div>

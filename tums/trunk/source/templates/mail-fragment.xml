@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <div id="paginator">
+        <span id="prev" style="display:none; cursor:pointer"><b>&lt; Newer</b></span>
+        <span id="count"> </span>
+        <span id="next" style="cursor:pointer"><b>Older &gt;</b></span>
+    </div>
+    <div id="mailWindow" class="mailWindow"></div>
+</div>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <title>tuminstall</title>
+        <link href="/css/formal.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="/static/js/MochiKit/MochiKit.js" type="text/javascript"></script>
+        <script src="/static/js/base.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="pageTitle">
+            <img src="/static/images/vulani-tums.png" alt=""/>
+        </div>
+        <div id="pageNote">
+            <h2>Installer</h2>
+        </div>
+        <div id="pageSide" />
+        <div id="pageContent">
+            <h1>Storage Type</h1>
+            <div id="s1">
+                Vulani servers should be deployed on RAID to ensure data integrity in the event of hardware failure. If you are using:<br />
+                <ul>
+                 <li>Hardware RAID, select 'Single device'</li>
+                 <li>Vulani-managed Software RAID, select "RAID 1"</li>
+                 <li>a single disk but want to add another later, select "RAID 1"</li>
+                 <li>Vulani in a virtualised environment, select 'Single device'</li>
+                 <li>a single disk with no RAID, select 'Single device' (not recommended)</li>
+                </ul>
+            </div>
+            <br/>
+            <br/>
+            <n:invisible n:render="form diskConfig"/>
+        </div>
+    </body>
+</html>

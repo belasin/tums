@@ -1,0 +1,41 @@
+body, html {
+    background: #fff;
+    vertical-align: center;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#pageContainer{
+    text-align:center;
+    vertical-align: middle;
+    overflow: visible;
+    height: 100%;
+}
+
+#centerBox {
+    margin:0px auto;
+    height: 520px;
+    width: 866px;
+    background: url('/images/IntroScreen-bg.png') no-repeat;
+    vertical-align: middle;
+}
+#blockTop {
+    height: 110px;
+}
+#centerBlock{
+    height: 94px;
+    height: expression('114px');
+    text-align:left;
+    padding: 10px;
+}
+#menuBlock{
+    height: 40px;
+    padding: 0;
+    margin-right: 1em;
+    text-align:center;
+}
+img {
+    border: none;
+}

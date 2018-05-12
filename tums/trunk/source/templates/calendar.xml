@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <title>Vulani</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/formal.css"/>
+        <script src="/scripts/MochiKit/MochiKit.js" type="text/javascript"></script>
+        <script src="/scripts/updateMail.js" type="text/javascript"></script>
+        <n:invisible n:render="liveglue"/>
+    </head>
+    <body class="mail">
+    <div class="wrapper">
+        <div id="pageTitle">
+            <img id="pageTitleLogo" src="/images/vulani-tums.png" alt=""/>
+            <table><tr n:render="mailBar"/></table>
+            <div id="userBar" n:render="userBar"/>
+        </div>
+
+        <div id="sideContainer">
+            <div id="pageNote" n:render="pageName"/>
+
+            <div id="pageSide">
+                <div id="sideCalBound">
+                    <div id="sideCalDate"/>
+                    <div id="sideCal"/>
+                </div>
+            </div>
+        </div>
+
+        <div id="pageContent" n:render="content"/>
+
+        <div id="footer" n:render="footerBar"/>
+        </div>
+    </body>
+</html>

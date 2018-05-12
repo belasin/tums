@@ -1,0 +1,76 @@
+# /etc/conf.d/net:
+
+#####
+# ETH0 configuration
+#####
+config_eth0=(
+#             "dhcp"
+             "192.168.0.1 broadcast 192.168.0.255 netmask 255.255.255.0"
+	     "adsl"
+            )
+fallback_eth0=(
+#               "null"
+	       "null"
+	       "null"
+	      )
+adsl_user_eth0="bpexample.adsl_user"
+dhcp_eth0="release nodns nontp nonis"
+
+#####
+# ETH1 configuration
+#####
+#config_eth1=(
+#             "dhcp"
+#             "192.168.1.1   broadcast 192.168.0.255 netmask 255.255.255.0"
+#             "adsl"
+#             )
+#fallback_eth1=(
+#                "null"
+#                "null"
+#                "null"
+#               )
+#adsl_user_eth1="bpexample.adsl_user"
+#dhcp_eth1="release nodns nontp nonis"
+
+#####
+# routes configuration
+#####
+#routes_eth0=(
+#             "default gw 192.168.0.254"
+#            )
+
+#routes_eth1=(
+#             "default gw 192.168.1.254"
+#            )
+
+#####
+# VLAN configuration
+#####
+#vlans_eth0="2"
+#vconfig_eth0=( "set_name_type VLAN_PLUS_VID_NO_PAD" )
+#config_vlan2=( "172.16.2.1 netmask 255.255.255.0" )
+
+#####
+# Bridge configuration
+#####
+#brctl_br0=( "setfd 0" "sethello 0" "stp off" )
+#bridge_br0="eth0 eth1"
+#config_eth0=( "null" )
+#config_eth1=( "null" )
+#config_br0=(
+##            "dhcp"
+#            "192.168.0.1 broadcast 192.168.0.255 netmask 255.255.255.0"
+#	    "adsl"
+#           )
+#fallback_br0=(
+##              "null"
+#	      "null"
+#	      "null"
+#	     )
+#routes_br0=(
+#            "default gw 192.168.0.254"
+#           )
+#depend_br0() {
+#    need net.eth0 net.eth1
+#}
+			 

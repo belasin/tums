@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <h2 id="Loading">Please wait while diagnostics are performed...</h2>
+    <h3>Internet Speed</h3>
+    <table cellspacing="0" style="width:20em">
+        <thead>
+            <tr><th>Location</th><th>Speed</th></tr>
+        </thead>
+        <tbody>
+            <tr style="text-align:center">
+                <td>South Africa</td>
+                <td><span id="localSpeed">?</span></td>
+            </tr>
+            <tr style="text-align:center">
+                <td>International</td>
+                <td><span id="intlSpeed">?</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Internet Latency</h3>
+    <table cellspacing="0" style="width:20em">
+        <thead>
+            <tr><th>Location</th><th valign="left">Latency</th><th>Packetloss</th></tr>
+        </thead>
+        <tbody>
+            <tr style="text-align:center">
+                <td>South Africa</td>
+                <td><span id="localLatency">?</span></td>
+                <td><span id="localPl">?</span></td>
+            </tr>
+            <tr style="text-align:center">
+                <td>International</td>
+                <td><span id="intlLatency">?</span></td>
+                <td><span id="intlPl">?</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Local Computers Online</h3>
+    <div id="localComp">Searching...</div>
+    <br/>
+    <br/>
+    <p>** Please note that these figures represent a best estimate and are influenced by many factors</p>
+</div>

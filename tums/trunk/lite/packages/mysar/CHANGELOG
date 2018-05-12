@@ -1,0 +1,41 @@
+2.1.0
+Installation bugfix found by Jos. Queiroz <zekkerj@gmail.com
+Increased minor version. The binary importer is a big deal and it deserves that.
+
+
+2.0.13
+Added latest release of binary importer from http://nightwolf.polaco.pro.br/mysar/
+Added template fix by Shembel Yuriy <shembel@gmail.com>
+Added Russian localisation by Shembel Yuriy <shembel@gmail.com>
+Merged corrections by Paulo Kappke <paulokappke@yahoo.com> 
+Added suggestions from Pete Payne <ppayne@new.rr.com>
+Fixed some php-opening-tags that caused some problems at installation. Reported and fixed by crsd at users.sourceforge.netwq
+Lazy fix of a PHP warning, reported by Michael Armstrong <Michael.Armstrong@develop-solutions.co.uk>
+Robert Pelletier <drizzt@menzonet.org> suggested that using CLIENT_FOUND_ROWS on mysql_connect corrects some SQL UPDATE problems.
+Documented $maxRunTime inside the cron file for people who are interested to tweak mysar
+Squid writes in access.log UTC timestamps. Mysar doesn't correct the time according timezone. Fixed. Submitted by Самусев Евгений <bitlz@nezabudka.ru>
+
+
+Remote the ability to bypass steps in the install wizard. Because of them many people don't do the installation right.
+2.0.12
+Change licence for "GPLv2 and any later version" specifically to "GPLv2"
+Added default sorting options in code to avoid nasty errors when confiug table is incomplete and changed the "Save Default" option to create them as needed
+Added French templates contributed by GRISARD Jean Marc <jmgrisard@capec.fr>
+Updated INSTALL to include instruction about cron
+Corrected a bug where mysar-importer would crash when processing a too long url. Submitted by "Cory A. Jaeger <cjaeger@castechnologies.us>".
+Minor bugfix at a log redirector in a cron job
+
+
+2.0.11
+Fixed to installation to upgrade the schema to version 3.
+Correction on bug 1400943
+
+
+2.0.10
+Corrected UPGRADE instruction.
+Added a new example config.ini file and added the ability to fail back to this one, if the user didn't bother to create it.
+
+
+2.0.9
+Fixed installation to give instructions for a working 2.0.X installation.
+

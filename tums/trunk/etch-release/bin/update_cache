@@ -1,0 +1,277 @@
+#!/usr/bin/python
+
+import sys, time, sha, os, socket
+import urllib, re
+from pysqlite2 import dbapi2 as sqlite
+sys.path.append('/usr/local/tcs/tums')
+from Core import confparse, Utils
+
+config = confparse.Config()
+# Some default settings
+logFile = open('/var/log/tums_cache.log', 'at')
+path = "/var/lib/samba/updates"
+
+def clearUpdate(name):
+    updateDb = sqlite.connect("/usr/local/tcs/tums/uaxeldb/update.db", isolation_level=None)
+    cur = updateDb.cursor()
+    cur.execute("DELETE FROM files WHERE name=?", (name))
+    updateDb.commit()
+    cur.close()
+    updateDb.close()
+
+def newUpdate(type, name):
+    try:
+        clearUpdate(name)
+    except:
+        pass
+    updateDb = sqlite.connect("/usr/local/tcs/tums/uaxeldb/update.db", isolation_level=None)
+    cur = updateDb.cursor()
+    cur.execute("INSERT INTO files (type, name, downloads, size) values (?, ?, ?, ?)", (type, name, 0, 0))
+    updateDb.commit()
+    cur.close()
+    updateDb.close()
+
+def hitUpdate(type, name, size):
+    updateDb = sqlite.connect("/usr/local/tcs/tums/uaxeldb/update.db", isolation_level=None)
+    cur = updateDb.cursor()
+    cur.execute(
+        "UPDATE files SET downloads=((SELECT downloads FROM files WHERE type=? AND name=?)+1), size=? WHERE type=? AND name=?", 
+        (
+            type, 
+            name,
+            size,
+            type, 
+            name
+        )
+    )
+    updateDb.commit()
+    cur.close()
+    updateDb.close()
+
+def logStdin(message):
+    logFile.write('%s REQUEST IN: %s\n' % (time.ctime(), message))
+    logFile.flush()
+
+def log(message):
+    logFile.write('%s update_cache: %s\n' % (time.ctime(), message))
+    logFile.flush()
+
+def checkCaptivity(url, host, username, type, unk):
+    #capzone = os.popen("shorewall show eth0_dynf 2>&1 | grep cap2net | grep %s ")
+    age = None
+
+    # Squid injects bullshit into our host. How nice of it
+    rhost = host.split('/')[0]
+
+    if os.path.exists('/tmp/caportal/%s' % rhost):
+        ln = open('/tmp/caportal/%s' % rhost).read().replace('\n', '').strip()
+        mac = os.popen("arp -n | grep %s | awk '{print $3}'" % rhost).read().strip('\n')
+        if ln:
+            listed = ln.split('|')
+            now = time.time()
+            age = int(now - float(listed[0]))
+            oldmac = listed[1]
+            username = listed[2]
+        else:
+            # Expire
+            age = 3601
+            oldmac = mac
+            username = ""
+        #log("   Age: %s   RMAC: %s   NMAC: %s    Username: %s   Host: %s" % (age, oldmac, mac, username, rhost))
+        if age < 3600:
+            if oldmac == mac:
+                # No change in MAC address
+                #log("Have good age %s" % age)
+                listed = open('/tmp/caportal/%s' % rhost, 'wt')
+                listed.write('%s|%s|%s' % (time.time(), oldmac, username))
+                listed.close()
+                return url
+
+    netsession = os.popen("net status sessions parseable 2>&1")
+
+    if rhost in netsession.read():
+        # Has a samba PDC session
+        return url
+    
+    encodeUrl = url.replace('http://', '').replace('?', 'Sx63')
+
+    # Still not allowed
+    newUrl = "http://127.0.0.1:9682/portal/%s" % encodeUrl
+
+    return newUrl
+    
+def foundMatch(url, host, username, type, target, unk):
+    newUrl = url
+
+    # Get the domain and filename
+    fileName = url.split('/')[-1]
+    domain = urllib.splithost(url.split(':',1)[-1])[0]
+
+    # Create a hash of the filename
+    hash = sha.sha(fileName).hexdigest()
+
+    # Set default response to redirect to our special proxy
+    newUrl = "http://127.0.0.1:10632/%s" % url.replace('http://', '')
+
+    # Override if already cached and complete
+    if os.path.exists('%s/%s'% (path, hash)) and os.path.exists('%s/%s/done' % (path, hash)):
+        # return redirect to our existing file
+        newUrl = "http://127.0.0.1:9682/updates/%s/%s" % ( hash, fileName)
+        log("feeding cache data %s" % newUrl)
+        
+        # Record this download 
+        fileSize = os.stat('%s/%s/%s'% (path, hash, fileName)).st_size
+        hitUpdate(target, fileName, fileSize)
+
+    else:
+        # Record the newfile download
+        try:
+            newUpdate(target, fileName)
+        except Exception, e:
+            log("ERROR %s" % e)
+
+    return newUrl
+
+def allowedUrl(url, host):
+    if '/' in host:
+        host = host.split('/')[0]
+    # check host
+    l = open('/etc/squid/allow_hosts')
+    for i in l:
+        ln = i.strip('\n').strip()
+        if ln == host:
+            return True
+        if '/' in ln:
+            if Utils.matchIP(ln, host):
+                return True
+    
+    l = open('/etc/squid/allow_domains')
+    
+    hostPortion = url.split('/')[2]
+    for i in l:
+        ln = i.strip('\n').strip()
+        if ln in hostPortion:
+            return True
+
+    l = open('/etc/squid/allow_dst')
+
+    try:
+        hostPortion = url.split('/')[2]
+        if '@' in hostPortion:
+            hostPortion = hostPortion.split('@')[-1]
+        if ':' in hostPortion:
+            hostPortion = hostPortion.split(':')[0]
+        
+        host = socket.gethostbyname(hostPortion)
+
+        for k in l:
+            ln = k.strip('\n').strip()
+            if '/' in ln:
+                if Utils.matchIP(ln, host):
+                    return True
+            if ln == host:
+                return True
+    except:
+        return False
+
+    return False
+
+# Regular expression mapper
+downloadMapper = {
+    # Microsoft sites
+    re.compile('^http://[^/]*\.microsoft\.com/.*\.(exe|psf|msi|msp|cab)$'):         'microsoft',
+    re.compile('^http://[^/]*\.windowsupdate\.com/.*\.(exe|psf|msi|msp|cab)$'):     'microsoft',
+    re.compile('^http://[^/]*\.microsoft\.com/.*(/autoupd|selfupdate/).*\.cab$'):   'microsoft',
+
+    # Linux stuff...
+    re.compile('^http://.*\.(deb)$'):                                               'linux',
+
+    # Youtube
+    #re.compile('^http://.*\.youtube\.com/get_video.*$'):                            'youtube'
+
+    #AVG
+    re.compile('^http://[^/]*\.avg.com/.*\.bin$'):                                  'av-avg',
+}
+exceptionMapper = {
+    #Exceptions 
+    re.compile('^http://[^/]*\.windowsupdate\.com/msdownload/update/software/dflt/.*\.(cab|psf)$'): 'EXCEPTION',
+}
+
+log('Starting up new cache thread')
+# Main loop
+run = True
+while run:
+    # read stdin and cleanup any artifacts
+    inLine = sys.stdin.readline()
+    inLine = inLine.strip('\n')
+    #log(" => " + repr(inLine))
+    # If it's a blank line then we die
+    if not inLine:
+        run = False
+        log('Shutting down')
+        break
+
+    # Get our input segments
+    try:
+        url, host, username, type = inLine.split()[0:4]
+        unk = inLine.split()[5:]
+    except Exception, e:
+        log('Error: %s' % str(e))
+        continue
+
+    if (not 'http://' in url.lower()) or (type == "CONNECT"):
+        sys.stdout.write(url + '\n')
+        sys.stdout.flush()
+        log('Fatal ENOSQUIRREL: ' + inLine)
+        continue
+
+    # Make sure we never handle local addresses...
+    h = url.split('/')[2]
+
+    local = False
+    for d,e in config.EthernetDevices.items():
+        net = e.get('ip', '192.168.0.1/24').split('/')[0]
+        if net in h:
+            local = True
+
+    ans = url
+    matched = False
+    if not local:
+        # Set our default answer
+        if type == "GET":
+            # Check for exceptions
+            ex = False
+            for matcher, target in exceptionMapper.items():
+                if matcher.match(url):
+                    ans = url
+                    log('Exception URL: ' + inLine)
+                    ex = True
+            if not ex:
+                # Look for a matcher
+                for matcher, target in downloadMapper.items():
+                    if matcher.match(url):
+                        log('Forking cache hit')
+                        # Set our redirected URL
+                        ans = foundMatch(url, host, username, type, target, unk)
+                        logStdin(inLine)
+                        log('Returning ' + ans)
+                        matched = True
+                        # Kill the matcher search loop
+                        break
+        if (not matched) and (not allowedUrl(url, host)):
+            captive = config.ProxyConfig.get('captive')
+            if captive:
+                try:
+                    ans = checkCaptivity(url, host, username, type, unk)
+                except Exception, e:
+                    log("Error in captive portal: " + str(e))
+                    ans = url
+
+    #log(" <= " + repr(ans))
+    # Write our answer back
+    sys.stdout.write(ans+'\n')
+    sys.stdout.flush()
+
+# Cleanup
+logFile.close()
+sys.stdout.flush()

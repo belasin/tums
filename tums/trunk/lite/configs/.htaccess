@@ -1,0 +1,6 @@
+AuthName "TCS Web Console"
+AuthType Basic
+AuthLDAPBindDN "cn=Manager,o=BPEXAMPLE"
+AuthLDAPBindPassword "wsbpexample"
+AuthLDAPURL "ldap://localhost:389/ou=People,dc=bpexample,dc=com,o=BPEXAMPLE?uid?sub?(&(employeeType=tumsAdmin)(accountStatus=active))"
+Require valid-user

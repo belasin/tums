@@ -1,0 +1,19 @@
+NameVirtualHost *
+<VirtualHost *>
+        ServerAdmin webmaster@localhost
+        
+        DocumentRoot /var/www/localhost/htdocs/
+        ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+
+        AddType application/x-ns-proxy-autoconfig .pac
+        AddType application/x-ns-proxy-autoconfig .dat
+
+        <Directory "/usr/lib/cgi-bin">
+                AllowOverride None
+                Options ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+        ErrorLog /var/log/apache2/error.log
+</VirtualHost>

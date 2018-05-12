@@ -1,0 +1,4 @@
+#!/bin/bash
+/root/dev/TUMS/trunk/build/Python-2.4.4/Tools/freeze/freeze.py -x config -x Settings -x twisted -x xml -x nevow -x sasync -x sqlalchemy -x dom -x encodings -x zope -x OpenSSL -x mysql deploy-man.py
+make
+rm *.c *.o

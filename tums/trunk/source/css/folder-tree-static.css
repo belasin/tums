@@ -1,0 +1,46 @@
+p{
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+a{
+    color:#000;
+    font-family:arial,verdana,helvetica,sans-serif;
+    font-size:0.8em;
+}
+
+.ctree{
+    margin:0px;
+    font-family:arial,verdana,helvetica,sans-serif;
+    padding:0px;
+}
+.ctree ul{
+    margin-left:20px;
+    padding-left:0px;
+    display:none;
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+.ctree li{
+    list-style-type:none;
+    vertical-align:middle;
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+.ctree li a{ 
+    font-family:arial,verdana,helvetica,sans-serif;
+    color:#000;
+    text-decoration:none;
+    font-family:arial;
+    font-size:0.8em;
+    padding-left:6px;
+    position: relative;
+    top: -10px;
+}
+ul {
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+
+li{
+    font-family:arial,verdana,helvetica,sans-serif;
+}
+
+a {
+    font-family:arial,verdana,helvetica,sans-serif;
+}

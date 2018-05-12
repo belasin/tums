@@ -1,0 +1,163 @@
+#!/usr/bin/python
+import sys, os
+args = sys.argv[1:]
+
+from twisted.python.filepath import FilePath
+
+def createProject(name, dir, **kwargs):
+    print kwargs
+
+    dirPath = FilePath(dir)
+
+    port = kwargs.get('port', False) or "8000"
+    dbaseimport = ""
+    storage = ""
+    if kwargs.get('database', False):
+        # A database URI 
+        dbaseimport = "import Database"
+        storage = "storage = Database.%sStorage('%s')" % (name, kwargs['database'])
+
+        if kwargs.get('auth', False):
+            storage += "\n    authentication = authentication.DatabaseAuthenticator"
+
+        database = """from enamel import sql, storage
+class %(name)sStorage(storage.SQL):
+    tables = {
+
+    }
+""" %   {
+            'name': name,
+        }
+
+        authdatabase = """from enamel import sql, storage
+import sha
+
+class %(name)sStorage(storage.SQL):
+    tables = {
+        'users': [
+            sql.Column('id', sql.Integer, primary_key = True),
+            sql.Column('username', sql.String(255)),
+            sql.Column('password', sql.String(255))
+        ]
+    }
+
+    @sql.transact
+    def authenticateUser(self, username, password):
+        if password:
+            check = sql.and_(
+                self.users.c.username == username, 
+                self.users.c.password == sha.sha(password).hexdigest()
+            )
+        elif password == None:
+            check = (self.users.c.username == username)
+
+        return self.users.select(check).execute().fetchone()
+""" %   {
+            'name': name,
+        }
+
+    deploy = '''#!/usr/bin/python
+from enamel import authentication, deployment, pages, servers, storage, deferreds, tags
+from enamel import sql
+import enamel\n
+    
+from pages import Index
+%(dbaseimport)s
+
+class Enamel%(name)s(enamel.Enamel):
+    """ %(name)s Enamel class """
+
+    indexPage = Index.Page
+    loginPage = pages.Login
+    %(storage)s
+    anonymousAccess = True
+
+    server = servers.TwistedWeb
+    port = %(port)s
+
+Enamel%(name)sInstance = Enamel%(name)s()
+deployment.run('%(name)s', [Enamel%(name)sInstance], pidLoc = "./")
+''' %   {
+            'name': name,
+            'port': port,
+            'dbaseimport': dbaseimport,
+            'storage': storage
+        }
+
+    indexPage = '''from enamel import pages, deferreds, tags
+
+from pages import * 
+
+class Page(pages.Standard):
+    """ Index page """
+
+    childPages = {}
+
+    child_css = pages.static.File('%(cssdir)s/')
+    child_static = pages.static.File('%(staticdir)s/')
+
+    def document(self):
+        return pages.template('index.xml', templateDir = '%(templatedir)s')
+''' %   {
+        'templatedir': dirPath.child('templates').path,
+        'cssdir': dirPath.child('templates').child('css').path,
+        'staticdir': dirPath.child('static').path,
+    }
+    
+    indexXML = '''<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+    <head>
+        <title>%(name)s</title>
+    </head>
+    <body>
+        Welcome to your application: %(name)s
+    </body>
+</html>\n''' % {'name': name}
+    # Create pages directory
+    os.system('mkdir -p %s' % dirPath.child('pages').path)
+    os.system('mkdir -p %s' % dirPath.child('templates').child('css').path)
+    os.system('mkdir -p %s' % dirPath.child('static').path)
+
+    # Create deployment object
+    l = open(dirPath.child('main.py').path, 'wt')
+    l.write(deploy)
+    l.close()
+
+    l = open(dirPath.child('pages').child('Index.py').path, 'wt')
+    l.write(indexPage)
+    l.close()
+
+    l = open(dirPath.child('pages').child('__init__.py').path, 'wt')
+    l.write("")
+    l.close()
+
+    l = open(dirPath.child('templates').child('index.xml').path, 'wt')
+    l.write(indexXML)
+    l.close()
+
+    if kwargs.get('database', False):
+        l = open(dirPath.child('Database.py').path, 'wt')
+        if kwargs.get('auth', False):
+            l.write(authdatabase)
+        else:
+            l.write(database)
+        l.close()
+
+    
+def newProject(name, dir = os.getcwd(), *a, **kwargs):
+    print a
+    createProject(name, dir, **kwargs)
+
+if args[0].lower() == "project":
+    if args[1].lower() == "new":
+        cargs = []
+        kwargs = {}
+        for i in args[2:]:
+            if "=" in i:
+                arg,val = tuple(i.split('=', 1))
+                kwargs[arg] = val
+            else:
+                cargs.append(i)
+        newProject(*cargs, **kwargs)
+

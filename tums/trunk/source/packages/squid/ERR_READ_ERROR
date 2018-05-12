@@ -1,0 +1,19 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link href="http://%h/error.css" type="text/css" rel="stylesheet" />
+        <title>Vulani Proxy Error: Read Error</title>
+    </head>
+    <body>
+        <table width="100%" height="100%"><tr height="100%"><td>
+            <div id="centerBox" valign="middle">
+                <div id="blockTop"></div>
+                <div id="menuBlock">
+                    <h2>Read Error</h2>
+                    <p>A network error has occured connecting to %U. Please try again later. Please contact your support representative for more information.</p>
+                </div>
+            </div>
+        </td></tr></table>
+    </body>
+</html>

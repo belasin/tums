@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Clean an exim queue of frozen bounce messages.
+# Usage: $0 [address] [nofreeze]
+
+# If an [address] option is given it is used as a regexp to match against the
+# sender of the addresses to remove
+
+# If the [nofreeze] option is given (can be any string) then the
+# mail doesn't have to be frozen. Use with care.
+
+PATH=/usr/local/sbin:/usr/xpg4/bin:/usr/local/bin:$PATH
+
+if [ -n "$2" ]; then
+  fr="$2"
+else
+  fr=' \*\*\* frozen \*\*\*'
+fi
+
+# if you have a version of exim too old to use the r option, remove it.
+exim -bpru | \
+  awk 'BEGIN {
+         rmfunct="exim -Mrm "
+       }
+
+       /^ ?[0-9].*<'"$1"'>'"$fr"'$/ {
+         rmlist= rmlist " " $3; ++num
+         if (num > 50) {
+           if (system(rmfunct rmlist ">/dev/null") !=0) {
+             print "Call to " rmfunct " " rmlist " failed."
+           } else {
+             total+=num; num=0; rmlist=""
+           }
+         }
+       }
+
+       END {
+         if (num > 0) {
+           if (system(rmfunct rmlist ">/dev/null") !=0) {
+             print "Call to " rmfunct " " rmlist " failed."
+           } else {
+             total+=num
+           }
+         }
+         if (total > 0) {
+           print total " message[s] removed."
+         }
+       }'

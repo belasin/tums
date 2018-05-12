@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ $1 ]; then
+    LOC=`pwd`
+    if [ -e /root/dev/TUMS/branches/rel/$1 ]; then
+        echo "Creating update branch..."
+        cd /root/dev/TUMS/branches/rel/
+        cp -a $1 tums
+        cd tums
+        echo "Cleaning..."
+        rm backup.dat
+        rm Settings.py
+        rm *.pem
+        chmod +x syscripts/*
+        rm updates/*
+        cd ..
+        echo "Creating update package..."
+        tar -jcf tums-$1.tar.bz2 tums
+        chmod a+r *.bz2
+        echo "Cleaning..."
+        rm -rf tums
+        scp -p tums-$1.tar.bz2 root@aide.thusa.net:/var/www/localhost/htdocs/tcs/
+        echo "Done!"
+    else
+        echo "No such release. Please mkrelease first."
+    fi
+fi

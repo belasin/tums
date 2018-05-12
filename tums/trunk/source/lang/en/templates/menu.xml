@@ -1,0 +1,31 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Update System</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    </head>
+    <body>
+        <div id="pageTitle"><img src="/images/thusaLogo.png" alt="" align="middle" />
+        </div>
+        <div class="pageBar" id="menuBar">
+            <img src="/images/blockMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+            <img src="/images/usersMB.png"/>
+
+        </div>
+
+        <div id="pageContent">
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+
+        <div class="pageBar" id="pageFotter">
+            <span class="snapLeft"><div n:render="version" /></span><span class="snapRight">A product of Thusa Business Support cc</span>
+        </div>
+    </body>
+</html>

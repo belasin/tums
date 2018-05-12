@@ -1,0 +1,89 @@
+#!/bin/bash
+if [ $1 ]; then
+    rm -rf /root/dev/Vulani/tums/branches/rel/$1
+    echo "Creating and tagging branch"
+    cp -a /root/dev/Vulani/tums/trunk/release /root/dev/Vulani/tums/branches/rel/$1
+    LOC=`pwd`
+    cd /root/dev/Vulani/tums/branches/rel/$1/
+    if [ "$?"="0" ]; then
+        # Update version tag
+        cat Core/PageHelpers.py | sed  "s/VERSION = .*/VERSION = '$1'/" > /tmp/phelp
+        cp /tmp/phelp Core/PageHelpers.py
+
+        echo -n "Building Vulani/tums."
+        /root/dev/Vulani/tums/trunk/build/Python-2.5.1/Tools/freeze/freeze.py -x ldappass -x epsilon -x axiom -x email -x config -x Settings -x twisted -x xml -x nevow -x sasync -x sqlalchemy -x dom -x encodings -x zope -x OpenSSL -x mysql -x lang -x Crypto -x binascii -x sha -x md5 -x pycha -x xen tums.py  > /dev/null 2>&1
+        echo -n "."
+        make > /dev/null 2>&1
+        echo "."
+        rm *.c *.o
+
+        echo -n "Building Vulani/tums Flow Collector."
+        /root/dev/Vulani/tums/trunk/build/Python-2.5.1/Tools/freeze/freeze.py -x ldappass -x epsilon -x axiom -x email -x config -x Settings -x twisted -x xml -x nevow -x sasync -x sqlalchemy -x dom -x encodings -x zope -x OpenSSL -x mysql -x lang -x Crypto -x binascii -x sha -x md5 -x xen tums-fc.py > /dev/null 2>&1
+        echo -n "."
+        make > /dev/null 2>&1
+        echo "."
+        rm *.c *.o 
+
+        echo -n "Building Configurator."
+        /root/dev/Vulani/tums/trunk/build/Python-2.5.1/Tools/freeze/freeze.py -x ldappass -x epsilon -x axiom -x email -x defaults -x config -x Settings -x twisted -x xml -x nevow -x sasync -x sqlalchemy -x plugins -x dom -x encodings -x Settings -x lang -x zope -x OpenSSL -x Crypto -x binascii -x sha -x xen -x md5 -x mysql -x termios -x fcntl -x struct configurator.py > /dev/null 2>&1
+        echo -n "."
+        make > /dev/null 2>&1
+        echo "."
+        rm *.c *.o
+
+        echo -n "Building post-prep LDAP binders."
+        /root/dev/Vulani/tums/trunk/build/Python-2.5.1/Tools/freeze/freeze.py -x ldappass -x epsilon -x axiom -x email -x defaults -x config -x Settings -x twisted -x xml -x nevow -x sasync -x sqlalchemy -x dom -x encodings -x Settings -x zope -x OpenSSL -x lang -x mysql -x Crypto -x binascii -x sha -x md5 -x xen ldapConfig.py > /dev/null 2>&1
+        echo -n "."
+        make > /dev/null 2>&1
+        echo "."
+        rm *.c *.o
+
+        echo -n "Cleaning."
+        rm -rf Pages 
+        echo -n "."
+        rm Core/Auth.py Core/AuthApacheProxy.py Core/PageHelpers.py Core/Shorewall.py 2>&1
+        echo -n "."
+        rm conftest.py dbTest.py deploy-man.py tcsStore.py updateTest.py Settings.py testExcept.py > /dev/null 2>&1
+        echo -n "."
+        rm Tree.py Settings.py.backup bot.py configtest.py install.py lillith-thusa.py testLDAP.py xmlrpc.py ldapConfig.py > /dev/null 2>&1
+        echo -n "."
+        rm Realm.py backupConf.py configurator.py demo-config.py test_tums.py tums.py tums-fc.py dogbert.py > /dev/null 2>&1
+        echo -n "."
+        rm tcsstore.dat > /dev/null 2>&1
+        echo -n "."
+        rm Makefil*
+        rm statdb/* 
+        rm testExcept.py
+        rm Checks.py
+        rm keyfil
+        rm flr
+        rm -rf _trial_temp
+        echo -n "."
+        mv config.py config.py.dist
+        echo -n "."
+        rm -rf db.axiom
+        rm -rf profiles
+        rm -rf tums.axiom
+        rm -rf rrd/*
+        rm -rf ThebeProtocol
+        rm -rf images/graphs/*
+        echo -n "."
+        rm backup.dat
+        rm tcsstore.dat
+        rm test*
+        rm config.*
+        echo -n "."
+        find . -iname "*.pyc" | xargs rm 
+        echo -n "."
+        find . -iname ".svn" | xargs rm -rf 
+        echo "."
+        echo "Reconfiguring TCS Image..."
+        cd $LOC
+        echo -n "."
+        cp -a /root/dev/Vulani/tums/branches/rel/$1/* /root/tcs-1.2RC4/usr/local/tcs/tums/
+        echo "."
+        echo "Done!"
+    else
+        echo "Can't move to location. Stopping before i break things."
+    fi
+fi

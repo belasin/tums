@@ -1,0 +1,436 @@
+input {       
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    color:#CE7E00;
+}
+
+textarea {
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    color:#CE7E00;
+}
+
+select {
+    font-family:arial;
+    font-size:12px;
+    padding:2px;
+    border: 1px solid #CCCCCC;
+    background-color: #F9F9F9;
+    color:#CE7E00;
+}
+
+
+p{
+    font-family:arial;
+}
+
+.set0{
+    border-right: 2px solid red;
+}
+
+.set1{
+    border-left: 2px solid lime;
+}
+
+a{
+    color:#000;
+    font-family:arial;
+    font-size:0.8em;
+}
+
+img{ 
+    border: none;
+}
+
+#smallCube {
+    padding-right: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.ctree{
+    margin:0px;
+    padding:0px;
+}
+.ctree ul{
+    margin-left:20px;
+    padding-left:0px;
+    display:none;
+}
+.ctree li{
+    list-style-type:none;
+    vertical-align:middle;
+
+}
+.ctree li a{
+    color:#000;
+    text-decoration:none;
+    font-family:arial;
+    font-size:0.8em;
+    padding-left:2px;
+}
+
+h2 {
+    text-align: middle;
+}
+
+h2 img {
+    vertical-align: middle;
+}
+
+thead {
+    background: url(/images/gradMB.png);
+}
+
+.listing {
+    background: #eee;
+}
+.listing td{
+    border: 1px solid #ddd;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#matrix td{
+    text-align: center;
+}
+
+#pageTitle img{
+    float: left;
+    clear: left;
+}
+
+#TreeCont {
+    width: 15em;
+    display: block;
+    overflow: scroll;
+}
+
+#pageTitle {
+    position: absolute;
+    top: 0;
+    display: block;
+    margin-left: 0em;
+    margin-right: 0em;
+    height: 72px;
+    background: url(/images/dottygrad.png);
+    right: 0;
+    left: 0;
+    width: expression( ( document.documentElement.clientWidth )+ 'px' );
+}
+
+#pageContent {
+    position: absolute;
+    top: 82px;
+    bottom: 18px;
+    bottom: expression('20px');
+    height: auto;
+    right: 0;
+    left: 0;
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+#pageContent td {
+    text-align: left;
+    vertical-align: top;
+}
+
+.pageBar {
+    display: block;
+    margin-left: 0em; 
+    margin-right: 0em;
+    right: 0;
+    height: 18px;
+    background: url(/images/gradMB.png);
+    background-repeat: repeat-x;
+}
+
+.snapLeft{
+    clear:left;
+    float: left;
+
+}
+
+.snapRight{
+    clear: right;
+    float: right;
+}
+
+
+#menuBar img {
+    display: inline;
+    float: left;
+    border: none;
+}
+
+#menuBar{
+    position: absolute;
+    top: 64px;
+    right: 0;
+    left: 0;
+    /* ie hack */
+    width: expression( ( document.documentElement.clientWidth )+ 'px' );
+}
+
+#pageFotter {
+    position: absolute;
+    bottom: 0px;
+}
+
+#rightBlock {
+    position: absolute;
+    padding: 1em;
+    left: 15em;
+    right:0px;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    width: expression( ( document.documentElement.clientWidth - 227)+ 'px' );
+    height: expression( ( document.documentElement.clientHeight - 127 )+ 'px' );
+}
+
+#rightBlock a {
+    font-size: 1em;
+}
+
+#rightBlockIFrame {
+    position: absolute;
+    padding: 0em;
+    left: 16.5em;
+    right:0px;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    width: expression( ( document.documentElement.clientWidth - 246)+ 'px' );
+    height: expression( ( document.documentElement.clientHeight - 127 )+ 'px' );
+}
+
+div#rightBlockIFrame {
+    padding: 1em;
+}
+
+#wholePage {
+    position: absolute;
+    padding: 1em;
+    left: 0;
+    right:0px;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    width: expression( ( document.documentElement.clientWidth - 26)+ 'px' );
+    height: expression( ( document.documentElement.clientHeight - 127 )+ 'px' );
+}
+
+#plainContent {
+    padding-left: 2em;
+}
+
+#TreeCont {
+    position: absolute;
+    display: block;
+    overflow: scroll;
+    top: 1px;
+    bottom: 0px;
+    /* IE Hack */
+    height: expression( ( document.documentElement.clientHeight - 86 )+ 'px' );
+}
+
+#sideCont{
+    position: absolute;
+    display: block;
+    margin-left: 1em;
+    width: 14em;
+    overflow: auto;
+    top: 1px;
+    bottom: 0px;
+    height: expression( ( document.documentElement.clientHeight - 86 )+ 'px' );
+    font-size: 110%;
+}
+
+#rightBlock .field {
+}
+
+#rightBlock div.field label {
+    width: 10em;
+    float: left;
+}
+        
+
+#rightBlock .description {
+}
+
+#rightBlock .inputs {
+    width: 26em;
+    margin-left: 10em;
+}
+
+#rightBlock div.inputs label{
+    display: inline;
+    float: none;
+}
+
+#rightBlock .inputs textarea{
+    height: 6em;
+    width: 20em;
+}
+
+#rightBlock .checkboxField {
+    margin-left: 10em;
+
+}
+/*
+#wholePage .field {
+}   
+
+#wholePage div.field label {
+    width: 10em;
+    float: left;
+}
+
+*/
+#wholePage .description {
+}
+
+#wholePage .inputs {
+    width: 26em;
+    margin-left: 10em;
+}
+
+#wholePage div.inputs label{
+    display: inline;
+    float: none;
+}
+
+#wholePage .inputs textarea{
+    height: 6em;
+    width: 20em;
+}
+ 
+#wholePage .checkboxField {
+    margin-left: 10em;
+
+}
+
+.checkedpassword .inputs label {
+    position: absolute;
+    left: 1.7em;
+    margin-top: 2.7em;
+}
+
+#editForm-userPassword-confirm {
+    margin-top: 1em;
+}
+
+#userSettings-userPassword-confirm {
+    margin-top:1em;
+}
+
+#editForm .checkboxmultichoice .inputs label {
+    position: absolute;
+    margin-top: 0.1em;
+    left: 16em;
+}
+
+.menuPanelTitleText {
+        float:left;
+}
+
+#contentMenuPanel {
+        float: left;
+        margin: 0;
+        padding: 0 1em 1em 1em;
+        width: 250px;
+}
+
+div.menuPanel {
+        padding: 6px;
+}
+
+div.menuPanelTitle {
+        background: #ebeadb;
+        background: url(/images/gradMB.png);
+/*        abackground: #e0e0c0;
+        aborder: 1px solid grey;
+        border-top: 1px solid #e2decd;
+        border-left: 1px solid #e2decd;
+        border-right: 1px solid #d6d2c2;
+        border-bottom: 1px solid #d6d2c2;
+/*        aborder: 1px solid #669;
+        aborder: 1px solid #c0c0c0;*/
+        height: 14px;
+        padding: 2px 2px 2px 6px;
+}
+
+span.menuPanelTitle {
+    font-weight: bold;
+    font-family:arial
+    font-size: 1em;
+}
+
+div.menuPanelTitle img {
+        position: relative;
+        float: right;
+        padding-right: 4px;
+        padding-top: 2px;
+        border: none;
+}
+
+div.menuPanelContentPanel {
+        padding-left: 5px;
+        padding-right: 5px;
+        clear: both;
+}
+
+div.menuPanelContent {
+        background: #efefef;
+        border-right: 1px solid #c0c0c0;
+        border-bottom: 1px solid #c0c0c0;
+        border-left: 1px solid #c0c0c0;
+        padding: 8px 4px 8px 8px;
+}
+
+A.MenuOptionLink {
+        color: #EC9600;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 10px;
+}
+
+A.MenuOptionLink:hover {
+        color: #EF2184;
+        text-decoration: none;
+}
+
+A.MenuTitleLink {
+        color: #EC9600;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 10px;
+}
+
+A.MenuTitleLink:hover {
+        color: #EF2184;
+        text-decoration: none;
+}
+
+.tabPane {
+    padding: 1em;
+    margin-left: 1px;
+    border: 1px solid #6B7282;
+}
+

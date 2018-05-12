@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <div id="progressSection">
+        <div id="progressBar"/>
+        <br/>
+        <br/>
+        <div id="statusText">Preparing updater...</div>
+    </div>
+
+    <div id="noUpdates">
+        <h3>Up to date</h3>
+        <p>The system is currently up to date</p>
+    </div>
+
+    <div id="updateConfirm">
+        <h3>New Updates</h3>
+        <p>New updates are available. The total size of this update is <span id="updateConfSize"/>.</p>
+        <img id="doUpdateBtn" src="/images/sub-up.png" alt="Update" style="cursor: pointer"/>
+    </div>
+</div>

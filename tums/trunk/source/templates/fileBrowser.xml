@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"  xml:lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1" n:render='liveFragment'>
+    <form class="nevow-form" id="selectPath">
+    <div class="field">
+    <label class="label" for="addVLAN-interface">Location</label>
+    <div class="inputs" n:render="locations">
+    </div>
+    </div>
+    </form>
+    <br/>
+    <table class="fileBrowserTab" cellspacing="0" valign="top">
+        <tr>
+            <td>
+                <div id="myTree" class="fileBrowserTree"/>
+            </td>
+            <td width="100%" valign="top">
+                <div id="myPane" class="fileBrowserPane">
+                    <div id="tableNode"/>
+                </div>
+            </td>
+            <td valign="top">
+                <div class="fileBrowserSide">
+                <table cellspacing="0" valign="top">
+                    <tr><td colspan="2"><strong>File/Folder Details</strong></td>
+                    </tr>
+                    <tr valign="top">
+                        <td>Name:          </td><td><span id="fName"></span>  </td>
+                    </tr>
+                    <tr valign="top" >
+                        <td >Last Modified: </td><td><span id="fMod"></span>   </td>
+                    </tr>
+                    <tr valign="top">
+                        <td >Date Created:  </td><td><span id="fCreate"></span></td>
+                    </tr>
+                    <tr valign="top">
+                        <td >File Size:     </td><td><span id="fSize"></span>  </td>
+                    </tr>
+                    <tr valign="top">
+                        <td >File Type:     </td><td><span id="fType"></span>  </td>
+                    </tr>
+                    <tr><td >  </td><td></td></tr>
+                    <tr><td colspan="2"><strong>Actions</strong></td></tr>
+                    <tr><td colspan="2"><div id="actionBoard"></div></td></tr>
+                    <tr><td><div style="width:6.5em"/></td><td></td></tr>
+                </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
